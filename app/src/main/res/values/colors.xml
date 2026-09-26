@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="calendar_outer_bg">#0B3FBF</color>   <!-- dark blue -->
+
+    <!-- V2 - Onboarding colors -->
+    <color name="card_bg">#FF0174DB</color>          <!-- Card background -->
+    <color name="button_primary">#0637AE</color>     <!-- Primary button -->
+    <color name="input_bg">#FF7FB2F5</color>         <!-- Input field background -->
+
+    <!-- V3 - Semantic surface and status tokens (replaces hardcoded hex in layouts) -->
+    <color name="surface_card">#FF0174DB</color>          <!-- Active task card -->
+    <color name="surface_card_muted">#7F0174DB</color>     <!-- Completed task card -->
+    <color name="surface_card_action">#0637AE</color>      <!-- START / DONE buttons -->
+    <color name="surface_overlay_soft">#33FFFFFF</color>   <!-- Section headers -->
+    <color name="surface_summary">#660174DB</color>        <!-- Progress summary strip -->
+    <color name="status_missed_surface">#AAFF5252</color>  <!-- Missed task card -->
+    <color name="status_success">#4CAF50</color>           <!-- Completion icon -->
+    <color name="status_missed_icon">#D32F2F</color>       <!-- Missed icon -->
+    <color name="status_pending">#FFC107</color>           <!-- Pending count -->
+</resources>

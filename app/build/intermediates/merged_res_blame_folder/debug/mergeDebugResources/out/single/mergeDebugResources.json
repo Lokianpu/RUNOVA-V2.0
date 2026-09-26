@@ -1,0 +1,254 @@
+[
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_history.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_history.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_chevron_right.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_chevron_right.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_item_task_card.xml.flat",
+        "source": "com.runova.app-main-37:/layout/item_task_card.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_sleep.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_sleep.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_chevron_left.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_chevron_left.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_item_notification.xml.flat",
+        "source": "com.runova.app-main-37:/layout/item_notification.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_notification_alarm.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_notification_alarm.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_status_pending.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_status_pending.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_settingsb.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/settingsb.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_calendar_selected.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_calendar_selected.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/xml_data_extraction_rules.xml.flat",
+        "source": "com.runova.app-main-37:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_dumbbell.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/dumbbell.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_settings.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_eat.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/eat.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_analytics.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_analytics.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_item_task_control.xml.flat",
+        "source": "com.runova.app-main-37:/layout/item_task_control.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_level_card_v1.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_level_card_v1.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_targetb.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/targetb.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_status_missed.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_status_missed.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_target.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_target.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_background.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/background.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_chip.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_chip.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_empty_card.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_empty_card.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_summary_card.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_summary_card.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_profileb.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/profileb.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.runova.app-main-37:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_home.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_questionnaire.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_questionnaire.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_notifications.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_notifications.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/xml_backup_rules.xml.flat",
+        "source": "com.runova.app-main-37:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_loading.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_loading.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_arrow_down.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_arrow_down.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_input_field_v1.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_input_field_v1.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_check_circle.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_check_circle.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_ic_cancel.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/ic_cancel.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_jogging.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/jogging.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_timer.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_timer.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_water.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/water.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_level_card_selected_v1.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_level_card_selected_v1.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_signup.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_signup.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_navbg.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/navbg.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_status_completed.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_status_completed.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_layout_navigation_bar.xml.flat",
+        "source": "com.runova.app-main-37:/layout/layout_navigation_bar.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_profile.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_logo.png.flat",
+        "source": "com.runova.app-main-37:/drawable/logo.png"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_homeb.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/homeb.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_avatar.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_avatar.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_meditation.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/meditation.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_bg_count_badge.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/bg_count_badge.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.runova.app-main-37:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/drawable_analyticsb.xml.flat",
+        "source": "com.runova.app-main-37:/drawable/analyticsb.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.runova.app-main-37:/mipmap-xxxhdpi/ic_launcher.webp"
+    }
+]

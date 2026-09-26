@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gender_options">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="event_options">
+        <item>Sprint</item>
+        <item>Middle Distance</item>
+        <item>Long Distance</item>
+        <item>Hurdles</item>
+        <item>Relay</item>
+        <item>General Running</item>
+    </string-array>
+
+    <string-array name="level_options">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Pro</item>
+    </string-array>
+
+    <string-array name="goal_options">
+        <item>Learn the Basics</item>
+        <item>Build and Hold Endurance</item>
+        <item>Run Faster and Race</item>
+        <item>Build Foundation</item>
+        <item>Improve Performance</item>
+        <item>Competition Performance</item>
+    </string-array>
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- V1 - Spacing and sizing tokens. 4pt base scale mapped to dp at 160dpi. -->
+<resources>
+    <!-- Spacing scale -->
+    <dimen name="space_1">4dp</dimen>
+    <dimen name="space_2">8dp</dimen>
+    <dimen name="space_3">12dp</dimen>
+    <dimen name="space_4">16dp</dimen>
+    <dimen name="space_5">20dp</dimen>
+    <dimen name="space_6">24dp</dimen>
+    <dimen name="space_7">32dp</dimen>
+    <dimen name="space_8">48dp</dimen>
+
+    <!-- Layout metrics used across screens -->
+    <dimen name="screen_padding">20dp</dimen>
+    <dimen name="card_padding">15dp</dimen>
+    <dimen name="card_radius">20dp</dimen>
+    <dimen name="card_radius_sm">15dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="card_gap">10dp</dimen>
+    <dimen name="icon_lg">60dp</dimen>
+    <dimen name="icon_md">32dp</dimen>
+    <dimen name="nav_height">95dp</dimen>
+    <dimen name="screen_title_height">35dp</dimen>
+    <dimen name="touch_target">48dp</dimen>
+</resources>

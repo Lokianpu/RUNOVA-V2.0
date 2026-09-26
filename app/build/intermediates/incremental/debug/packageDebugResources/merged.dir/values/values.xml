@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="event_options">
+        <item>Sprint</item>
+        <item>Middle Distance</item>
+        <item>Long Distance</item>
+        <item>Hurdles</item>
+        <item>Relay</item>
+        <item>General Running</item>
+    </string-array>
+    <string-array name="gender_options">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="goal_options">
+        <item>Learn the Basics</item>
+        <item>Build and Hold Endurance</item>
+        <item>Run Faster and Race</item>
+        <item>Build Foundation</item>
+        <item>Improve Performance</item>
+        <item>Competition Performance</item>
+    </string-array>
+    <string-array name="level_options">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Pro</item>
+    </string-array>
+    <color name="button_primary">#0637AE</color>
+    <color name="calendar_outer_bg">#0B3FBF</color>
+    <color name="card_bg">#FF0174DB</color>
+    <color name="input_bg">#FF7FB2F5</color>
+    <color name="status_missed_icon">#D32F2F</color>
+    <color name="status_missed_surface">#AAFF5252</color>
+    <color name="status_pending">#FFC107</color>
+    <color name="status_success">#4CAF50</color>
+    <color name="surface_card">#FF0174DB</color>
+    <color name="surface_card_action">#0637AE</color>
+    <color name="surface_card_muted">#7F0174DB</color>
+    <color name="surface_overlay_soft">#33FFFFFF</color>
+    <color name="surface_summary">#660174DB</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="card_gap">10dp</dimen>
+    <dimen name="card_padding">15dp</dimen>
+    <dimen name="card_radius">20dp</dimen>
+    <dimen name="card_radius_sm">15dp</dimen>
+    <dimen name="icon_lg">60dp</dimen>
+    <dimen name="icon_md">32dp</dimen>
+    <dimen name="nav_height">95dp</dimen>
+    <dimen name="screen_padding">20dp</dimen>
+    <dimen name="screen_title_height">35dp</dimen>
+    <dimen name="space_1">4dp</dimen>
+    <dimen name="space_2">8dp</dimen>
+    <dimen name="space_3">12dp</dimen>
+    <dimen name="space_4">16dp</dimen>
+    <dimen name="space_5">20dp</dimen>
+    <dimen name="space_6">24dp</dimen>
+    <dimen name="space_7">32dp</dimen>
+    <dimen name="space_8">48dp</dimen>
+    <dimen name="touch_target">48dp</dimen>
+    <string name="RUNOVA">RUNOVA</string>
+    <string name="app_name">RUNOVA</string>
+    <string name="profile_age_label">Age</string>
+    <string name="profile_days_label">Running days</string>
+    <string name="profile_days_value">%1$d days a week</string>
+    <string name="profile_goal_label">Goal</string>
+    <string name="profile_not_set">--</string>
+    <string name="profile_years">years</string>
+    <string name="q_days">How many days per week can you run?</string>
+    <string name="q_days_1">1 day</string>
+    <string name="q_days_2">2 days</string>
+    <string name="q_days_3">3 days</string>
+    <string name="q_days_4">4 days</string>
+    <string name="q_days_5">5 days</string>
+    <string name="q_days_6">6 days</string>
+    <string name="q_error_days">Choose how many days you run</string>
+    <string name="q_error_goal">Choose your running goal</string>
+    <string name="q_error_minutes">Choose how much you run</string>
+    <string name="q_finish">FINISH</string>
+    <string name="q_goal">What is your main running goal?</string>
+    <string name="q_goal_basics">Learn the basics</string>
+    <string name="q_goal_endurance">Build and hold endurance</string>
+    <string name="q_goal_performance">Run faster and race</string>
+    <string name="q_height_hint">100-250</string>
+    <string name="q_height_label">Height (cm)</string>
+    <string name="q_minutes">How much do you run in a typical week?</string>
+    <string name="q_minutes_120">1-2 hours</string>
+    <string name="q_minutes_240">2-4 hours</string>
+    <string name="q_minutes_30">Under 30 min</string>
+    <string name="q_minutes_300">4+ hours</string>
+    <string name="q_minutes_60">30-60 min</string>
+    <string name="q_minutes_new">New to running</string>
+    <string name="q_result_level">Your plan: %1$s</string>
+    <string name="q_result_reason">Based on %1$s across %2$d days a week</string>
+    <string name="q_result_title">Your plan</string>
+    <string name="q_section_body">Your body</string>
+    <string name="q_section_running">Your running</string>
+    <string name="q_title">Tell us about your running</string>
+    <string name="q_weight_hint">30-200</string>
+    <string name="q_weight_label">Weight (kg)</string>
+    <style name="Animation.RUNOVA.None" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+    </style>
+    <style name="Base.Theme.RUNOVA" parent="Theme.Material3.DayNight.NoActionBar"/>
+    <style name="Theme.RUNOVA" parent="Base.Theme.RUNOVA">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:windowBackground">@drawable/background</item>
+
+        
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+
+        
+        <item name="android:windowAnimationStyle">@style/Animation.RUNOVA.None</item>
+    </style>
+</resources>

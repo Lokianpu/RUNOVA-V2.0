@@ -1,0 +1,36 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.RUNOVA" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.RUNOVA" parent="Base.Theme.RUNOVA">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- V5 - Screen consistency: every screen draws edge to edge like the
+             home screen. Transparent system bars, no dark contrast scrim, and
+             the window paints the same gradient while layouts inflate so no
+             black band ever shows at the top or bottom. -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:windowBackground">@drawable/background</item>
+
+        <!-- V6 - Full-screen chrome: the window also fills the display cutout so the gradient
+             reaches the physical top edge on notched / punch-hole devices. Insets applied by
+             WindowHelper keep content clear of the bars and the camera. -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+
+        <!-- V6 - Instant screen changes: no slide to the left, no fade. The shared bottom
+             navigation bar therefore stays fixed in place when moving between screens. -->
+        <item name="android:windowAnimationStyle">@style/Animation.RUNOVA.None</item>
+    </style>
+
+    <!-- V6 - One shared transition style with every activity animation removed. -->
+    <style name="Animation.RUNOVA.None" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+    </style>
+</resources>
