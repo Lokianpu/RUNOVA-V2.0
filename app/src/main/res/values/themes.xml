@@ -3,6 +3,18 @@
     <style name="Base.Theme.RUNOVA" parent="Theme.Material3.DayNight.NoActionBar" />
 
     <style name="Theme.RUNOVA" parent="Base.Theme.RUNOVA">
+        <item name="alertDialogTheme">@style/Theme.RUNOVA.AlertDialog</item>
+        <!-- Plain touch: no ripple/press feedback anywhere; functions unchanged. -->
+        <item name="selectableItemBackground">@android:color/transparent</item>
+        <item name="selectableItemBackgroundBorderless">@android:color/transparent</item>
+        <item name="android:selectableItemBackground">@android:color/transparent</item>
+        <item name="colorControlHighlight">@android:color/transparent</item>
+        <item name="rippleColor">@android:color/transparent</item>
+        <item name="android:colorPressedHighlight">@android:color/transparent</item>
+        <item name="android:colorActivatedHighlight">@android:color/transparent</item>
+        <item name="android:colorFocusedHighlight">@android:color/transparent</item>
+        <item name="materialButtonStyle">@style/Theme.RUNOVA.Button</item>
+
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
 
@@ -24,6 +36,21 @@
         <!-- V6 - Instant screen changes: no slide to the left, no fade. The shared bottom
              navigation bar therefore stays fixed in place when moving between screens. -->
         <item name="android:windowAnimationStyle">@style/Animation.RUNOVA.None</item>
+    </style>
+
+    <!-- Buttons: plain press, no ripple, no lift. -->
+    <style name="Theme.RUNOVA.Button" parent="Widget.Material3.Button">
+        <item name="rippleColor">@android:color/transparent</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Popups share the app's card look: blue surface, white text, rounded corners. -->
+    <style name="Theme.RUNOVA.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/card_bg</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="dialogCornerRadius">@dimen/card_radius</item>
     </style>
 
     <!-- V6 - One shared transition style with every activity animation removed. -->

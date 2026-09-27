@@ -141,7 +141,6 @@ public class NotificationsActivity extends AppCompatActivity {
     }
 
     private void setupNavigation() {
-        findViewById(R.id.settingsb).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
         findViewById(R.id.homeb).setOnClickListener(v -> {
             startActivity(new Intent(this, HomeActivity.class));
             finish();

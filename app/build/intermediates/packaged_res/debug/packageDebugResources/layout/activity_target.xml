@@ -30,18 +30,28 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Today's Training"
+                    android:text="Today's Target"
                     android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <ImageButton
+                    android:id="@+id/btnNotifications"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Notifications"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_notification_alarm" />
+
+                <ImageButton
                     android:id="@+id/settingsb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="settings"
-                    android:paddingVertical="10dp"
+                    android:padding="12dp"
                     android:src="@drawable/settingsb" />
 
             </LinearLayout>
@@ -92,7 +102,7 @@
                 android:background="@drawable/bg_summary_card"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="10dp"
-                android:text="0 of 0 complete"
+                android:text="0 of 0 completed"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -125,7 +135,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Pending Tasks"
+                            android:text="Pending Targets"
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -164,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="20dp"
-                        android:text="No pending tasks"
+                        android:text="No pending targets"
                         android:textColor="#99FFFFFF"
                         android:textSize="14sp"
                         android:visibility="gone" />
@@ -200,7 +210,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Completed Tasks"
+                            android:text="Completed Targets"
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -241,7 +251,84 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="20dp"
-                        android:text="No completed tasks"
+                        android:text="No completed targets"
+                        android:textColor="#99FFFFFF"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="@dimen/card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/headerMissed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Missed Targets"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/badgeMissedCount"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_count_badge"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/card_bg"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrowMissed"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="8dp"
+                            android:contentDescription="expand"
+                            android:rotation="180"
+                            android:src="@drawable/ic_arrow_down" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvMissedTasks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:paddingBottom="8dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tvMissedEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="No missed targets"
                         android:textColor="#99FFFFFF"
                         android:textSize="14sp"
                         android:visibility="gone" />

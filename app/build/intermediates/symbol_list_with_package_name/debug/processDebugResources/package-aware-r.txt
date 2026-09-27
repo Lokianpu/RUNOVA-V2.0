@@ -3008,6 +3008,7 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable background
 drawable bg_avatar
+drawable bg_btn_secondary
 drawable bg_calendar_selected
 drawable bg_chip
 drawable bg_count_badge
@@ -3229,6 +3230,7 @@ id antiClockwise
 id anticipate
 id arc
 id arrowCompleted
+id arrowMissed
 id arrowPending
 id asConfigured
 id async
@@ -3237,6 +3239,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id badgeCompletedCount
+id badgeMissedCount
 id badgePendingCount
 id barrier
 id baseline
@@ -3262,7 +3265,7 @@ id btnNotifications
 id btnOption1
 id btnOption2
 id btnPrimary
-id btnResume
+id btnReset
 id btnSave
 id btnStart
 id btnViewAll
@@ -3327,7 +3330,6 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
-id divider
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -3383,6 +3385,7 @@ id group_divider
 id grouping
 id groups
 id headerCompleted
+id headerMissed
 id headerPending
 id header_title
 id hide_ime_id
@@ -3445,7 +3448,6 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
-id mealSwitch
 id message
 id middle
 id mini
@@ -3544,6 +3546,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id remindersSwitch
 id report_drawn
 id reverseSawtooth
 id right
@@ -3553,6 +3556,7 @@ id right_side
 id rounded
 id row_index_key
 id rvCompletedTasks
+id rvMissedTasks
 id rvNotifications
 id rvPendingTasks
 id rvTasks
@@ -3590,7 +3594,6 @@ id showTitle
 id sin
 id skipCollapsed
 id skipped
-id sleepSwitch
 id slide
 id snackbar_action
 id snackbar_text
@@ -3625,6 +3628,9 @@ id submenuarrow
 id submit_area
 id supportScrollUp
 id tabMode
+id tabMonth
+id tabWeek
+id tabYear
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -3675,6 +3681,8 @@ id tvAge
 id tvCfgEvent
 id tvCfgGoal
 id tvCfgLevel
+id tvChartCaption
+id tvChartTitle
 id tvCompletedEmpty
 id tvDate
 id tvDurationLabel
@@ -3686,6 +3694,7 @@ id tvLevelProgress
 id tvLoadingMessage
 id tvMessage
 id tvMissedCount
+id tvMissedEmpty
 id tvPendingCount
 id tvPendingEmpty
 id tvPleaseWait
@@ -3702,6 +3711,7 @@ id tvTaskDuration
 id tvTaskName
 id tvTaskStatus
 id tvTimerDisplay
+id tvTimerState
 id tvViewLevel
 id unchecked
 id uniform
@@ -3717,12 +3727,10 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
-id waterSwitch
 id west
 id withText
 id with_icon
 id withinBounds
-id workoutSwitch
 id wrap
 id wrap_content
 id wrap_content_constrained
@@ -4772,6 +4780,8 @@ style Theme_MaterialComponents_Light_NoActionBar_Bridge
 style Theme_MaterialComponents_NoActionBar
 style Theme_MaterialComponents_NoActionBar_Bridge
 style Theme_RUNOVA
+style Theme_RUNOVA_AlertDialog
+style Theme_RUNOVA_Button
 style ThemeOverlay_AppCompat
 style ThemeOverlay_AppCompat_ActionBar
 style ThemeOverlay_AppCompat_Dark

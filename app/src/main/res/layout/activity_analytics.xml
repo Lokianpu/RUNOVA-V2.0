@@ -9,6 +9,7 @@
         android:id="@+id/screenScroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/navigationBar">
 
@@ -35,12 +36,22 @@
                     android:textStyle="bold" />
 
                 <ImageButton
+                    android:id="@+id/btnNotifications"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Notifications"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_notification_alarm" />
+
+                <ImageButton
                     android:id="@+id/settingsb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="settings"
-                    android:paddingVertical="10dp"
+                    android:padding="12dp"
                     android:src="@drawable/settingsb" />
 
             </LinearLayout>
@@ -74,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:text="0 / 28 days"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:layout_marginBottom="@dimen/space_2" />
 
                     <ProgressBar
@@ -83,7 +94,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="8dp"
                         android:max="28"
-                        android:progress="0" />
+                        android:progress="0"
+                        android:progressTint="@color/status_success" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -117,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:text="0 days"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -126,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/card_gap"
-                app:cardBackgroundColor="@color/input_bg"
+                app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="@dimen/card_radius"
                 app:cardElevation="@dimen/card_elevation">
 
@@ -139,39 +151,39 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
                         android:text="Status Counts"
-                        android:textColor="@color/button_primary"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="@dimen/space_3" />
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/tvFinishedCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
-                                android:textColor="@color/button_primary"
+                                android:textColor="@color/status_success"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Finished"
-                                android:textColor="@color/button_primary"
-                                android:textSize="12sp" />
+                                android:layout_marginTop="2dp"
+                                android:text="Completed"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
 
                         </LinearLayout>
 
@@ -179,49 +191,51 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <TextView
-                                android:id="@+id/tvMissedCount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textColor="@color/button_primary"
-                                android:textSize="24sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Missed"
-                                android:textColor="@color/button_primary"
-                                android:textSize="12sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/tvPendingCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
-                                android:textColor="@color/button_primary"
+                                android:textColor="@color/status_pending"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
                                 android:text="Pending"
-                                android:textColor="@color/button_primary"
-                                android:textSize="12sp" />
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvMissedCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/status_missed_icon"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Missed"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
 
                         </LinearLayout>
 
@@ -232,30 +246,89 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="@dimen/card_radius"
                 app:cardElevation="@dimen/card_elevation">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="@dimen/card_padding">
 
                     <TextView
+                        android:id="@+id/tvChartTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
                         android:text="This Week"
                         android:textColor="@color/white"
                         android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="@dimen/space_3" />
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tabWeek"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_chip"
+                            android:gravity="center"
+                            android:paddingVertical="8dp"
+                            android:text="Week"
+                            android:textColor="@color/button_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tabMonth"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingVertical="8dp"
+                            android:text="Month"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tabYear"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingVertical="8dp"
+                            android:text="Year"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                     <com.github.mikephil.charting.charts.BarChart
                         android:id="@+id/chart"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="200dp" />
+
+                    <TextView
+                        android:id="@+id/tvChartCaption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:alpha="0.7"
+                        android:text="Week shows all activity, even across level changes"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

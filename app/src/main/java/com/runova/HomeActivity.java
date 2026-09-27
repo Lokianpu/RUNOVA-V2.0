@@ -61,7 +61,9 @@ public class HomeActivity extends AppCompatActivity {
         tvPendingCount = findViewById(R.id.tvPendingCount);
         tvMissedCount = findViewById(R.id.tvMissedCount);
 
-        rvTasks.setLayoutManager(new LinearLayoutManager(this));
+        rvTasks.setLayoutManager(getResources().getConfiguration().screenWidthDp >= 600
+            ? new androidx.recyclerview.widget.GridLayoutManager(this, 2)
+            : new LinearLayoutManager(this));
 
         setupGreeting();
         setupDate();
@@ -203,9 +205,12 @@ public class HomeActivity extends AppCompatActivity {
             Task task = tasks.get(position);
             holder.tvTaskName.setText(task.name);
             holder.tvTaskDuration.setText(task.minutes + " minutes");
-            holder.tvTaskStatus.setText(task.status);
+            holder.tvTaskStatus.setText("Finished".equals(task.status) ? "Completed" : task.status);
             holder.itemView.setOnClickListener(rowClick);
-            holder.divider.setVisibility(position == tasks.size() - 1 ? View.GONE : View.VISIBLE);
+            int bg = "Finished".equals(task.status) ? R.drawable.bg_status_completed
+                    : "Missed".equals(task.status) ? R.drawable.bg_status_missed
+                    : R.drawable.bg_status_pending;
+            holder.tvTaskStatus.setBackgroundResource(bg);
         }
 
         @Override
@@ -215,14 +220,12 @@ public class HomeActivity extends AppCompatActivity {
 
         static class TaskViewHolder extends RecyclerView.ViewHolder {
             TextView tvTaskName, tvTaskDuration, tvTaskStatus;
-            View divider;
 
             TaskViewHolder(View itemView) {
                 super(itemView);
                 tvTaskName = itemView.findViewById(R.id.tvTaskName);
                 tvTaskDuration = itemView.findViewById(R.id.tvTaskDuration);
                 tvTaskStatus = itemView.findViewById(R.id.tvTaskStatus);
-                divider = itemView.findViewById(R.id.divider);
             }
         }
     }

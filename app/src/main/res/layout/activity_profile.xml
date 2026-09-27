@@ -9,6 +9,7 @@
         android:id="@+id/screenScroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/navigationBar">
 
@@ -35,12 +36,22 @@
                     android:textStyle="bold" />
 
                 <ImageButton
+                    android:id="@+id/btnNotifications"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Notifications"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_notification_alarm" />
+
+                <ImageButton
                     android:id="@+id/settingsb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="settings"
-                    android:paddingVertical="10dp"
+                    android:padding="12dp"
                     android:src="@drawable/settingsb" />
 
             </LinearLayout>
@@ -410,23 +421,39 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <Button
-                    android:id="@+id/btnEditProfile"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_3"
-                    android:backgroundTint="@color/button_primary"
-                    android:text="EDIT PROFILE"
-                    android:textColor="@color/white" />
+                    android:layout_marginTop="@dimen/card_gap"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="@dimen/card_radius"
+                    app:cardElevation="@dimen/card_elevation">
 
-                <Button
-                    android:id="@+id/btnAbout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_2"
-                    android:backgroundTint="@color/button_primary"
-                    android:text="About RUNOVA"
-                    android:textColor="@color/white" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <Button
+                            android:id="@+id/btnEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/button_primary"
+                            android:text="EDIT PROFILE"
+                            android:textColor="@color/white" />
+
+                        <Button
+                            android:id="@+id/btnAbout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_2"
+                            android:backgroundTint="@color/button_primary"
+                            android:text="About RUNOVA"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

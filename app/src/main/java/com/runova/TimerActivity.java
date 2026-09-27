@@ -2,7 +2,6 @@ package com.runova;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -21,10 +20,11 @@ import java.util.Locale;
 public class TimerActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private TimerController timerController;
-    private TextView tvTimerDisplay;
-    private Button btnPrimary, btnResume;
+    private TextView tvTimerDisplay, tvTimerState;
+    private Button btnPrimary;
     private int taskId, minutes;
     private boolean running;
+    private boolean ready = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +47,11 @@ public class TimerActivity extends AppCompatActivity {
         TextView tvTaskName = findViewById(R.id.tvTaskName);
         TextView tvDurationLabel = findViewById(R.id.tvDurationLabel);
         tvTimerDisplay = findViewById(R.id.tvTimerDisplay);
+        tvTimerState = findViewById(R.id.tvTimerState);
         btnPrimary = findViewById(R.id.btnPrimary);
-        btnResume = findViewById(R.id.btnResume);
+        Button btnReset = findViewById(R.id.btnReset);
         Button btnDone = findViewById(R.id.btnDone);
-        Button btnBack = findViewById(R.id.btnBack);
+        findViewById(R.id.btnBack).setOnClickListener(v -> goBack());
 
         tvTaskName.setText(taskName);
         tvDurationLabel.setText("Duration: " + minutes + " minutes");
@@ -58,9 +59,8 @@ public class TimerActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         btnPrimary.setOnClickListener(v -> onPrimary());
-        btnResume.setOnClickListener(v -> onPrimary());
+        btnReset.setOnClickListener(v -> confirmReset());
         btnDone.setOnClickListener(v -> confirmDone());
-        btnBack.setOnClickListener(v -> goBack());
 
         restoreState();
     }
@@ -75,7 +75,7 @@ public class TimerActivity extends AppCompatActivity {
         }
 
         if (state == null) {
-            startTimer();
+            showReady();
         } else if (state.paused) {
             showPaused(state.remainingMs);
         } else {
@@ -86,7 +86,9 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void onPrimary() {
-        if (running) {
+        if (ready) {
+            startTimer();
+        } else if (running) {
             timerController.pauseTimer();
             TimerController.ActiveState state = timerController.readState();
             showPaused(state != null ? state.remainingMs : 0);
@@ -102,18 +104,42 @@ public class TimerActivity extends AppCompatActivity {
         setDisplay(minutes * 60 * 1000L);
     }
 
+    private void showReady() {
+        ready = true;
+        running = false;
+        btnPrimary.setText("START");
+        btnPrimary.setBackgroundTintList(getResources().getColorStateList(R.color.button_primary, null));
+        tvTimerState.setText("Ready to start");
+        setDisplay(minutes * 60 * 1000L);
+    }
+
     private void showRunning() {
+        ready = false;
         running = true;
-        btnPrimary.setVisibility(android.view.View.VISIBLE);
         btnPrimary.setText("PAUSE");
-        btnResume.setVisibility(android.view.View.GONE);
+        btnPrimary.setBackgroundTintList(getResources().getColorStateList(R.color.status_missed_icon, null));
+        tvTimerState.setText("Running");
     }
 
     private void showPaused(long remaining) {
+        ready = false;
         running = false;
-        btnPrimary.setVisibility(android.view.View.GONE);
-        btnResume.setVisibility(android.view.View.VISIBLE);
+        btnPrimary.setText("RESUME");
+        btnPrimary.setBackgroundTintList(getResources().getColorStateList(R.color.status_success, null));
+        tvTimerState.setText("Paused");
         setDisplay(remaining);
+    }
+
+    private void confirmReset() {
+        new AlertDialog.Builder(this)
+            .setTitle("Reset timer")
+            .setMessage("The timer will start again from the beginning.")
+            .setPositiveButton("RESET", (dialog, which) -> {
+                timerController.clearTimer();
+                showReady();
+            })
+            .setNegativeButton("CANCEL", null)
+            .show();
     }
 
     private void setDisplay(long millis) {
@@ -142,7 +168,7 @@ public class TimerActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
             .setTitle("Complete task")
             .setMessage("Are you sure you want to mark this activity as complete?")
-            .setPositiveButton("DONE", (dialog, which) -> completeTask(false))
+            .setPositiveButton("COMPLETE", (dialog, which) -> completeTask(false))
             .setNegativeButton("CANCEL", null)
             .show();
     }

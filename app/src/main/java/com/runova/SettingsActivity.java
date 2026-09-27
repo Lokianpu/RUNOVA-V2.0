@@ -1,5 +1,6 @@
 package com.runova;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,10 +14,7 @@ import com.runova.helpers.WindowHelper;
 
 public class SettingsActivity extends AppCompatActivity {
     private static final String PREFS = "settings";
-    private static final String KEY_MEAL = "reminder_meal";
-    private static final String KEY_WATER = "reminder_water";
-    private static final String KEY_WORKOUT = "reminder_workout";
-    private static final String KEY_SLEEP = "alarm_sleep";
+    private static final String KEY_REMINDERS = "reminders_enabled";
     private static final String KEY_DARK = "appearance_dark";
 
     private SharedPreferences prefs;
@@ -34,11 +32,19 @@ public class SettingsActivity extends AppCompatActivity {
         ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
-        setupSwitch((SwitchMaterial) findViewById(R.id.mealSwitch), KEY_MEAL, true);
-        setupSwitch((SwitchMaterial) findViewById(R.id.waterSwitch), KEY_WATER, true);
-        setupSwitch((SwitchMaterial) findViewById(R.id.workoutSwitch), KEY_WORKOUT, true);
-        setupSwitch((SwitchMaterial) findViewById(R.id.sleepSwitch), KEY_SLEEP, false);
+        setupSwitch((SwitchMaterial) findViewById(R.id.remindersSwitch), KEY_REMINDERS, true);
         setupDarkMode((SwitchMaterial) findViewById(R.id.darkModeSwitch));
+        setupNavigation();
+    }
+
+    private void setupNavigation() {
+        findViewById(R.id.homeb).setOnClickListener(v -> {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        });
+        findViewById(R.id.targetb).setOnClickListener(v -> startActivity(new Intent(this, TargetActivity.class)));
+        findViewById(R.id.analyticsb).setOnClickListener(v -> startActivity(new Intent(this, AnalyticsActivity.class)));
+        findViewById(R.id.profileb).setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
     }
 
     private void setupSwitch(SwitchMaterial toggle, String key, boolean def) {

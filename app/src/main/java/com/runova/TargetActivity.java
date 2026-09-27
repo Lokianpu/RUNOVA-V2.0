@@ -32,13 +32,14 @@ public class TargetActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private TaskGenerator taskGenerator;
     private TimerController timerController;
-    private RecyclerView rvPendingTasks, rvCompletedTasks;
-    private TextView tvLevelChip, tvTargetsSummary, tvPendingEmpty, tvCompletedEmpty;
-    private TextView badgePendingCount, badgeCompletedCount;
-    private ImageView arrowPending, arrowCompleted;
+    private RecyclerView rvPendingTasks, rvCompletedTasks, rvMissedTasks;
+    private TextView tvLevelChip, tvTargetsSummary, tvPendingEmpty, tvCompletedEmpty, tvMissedEmpty;
+    private TextView badgePendingCount, badgeCompletedCount, badgeMissedCount;
+    private ImageView arrowPending, arrowCompleted, arrowMissed;
     private Integer activeTaskId;
     private boolean pendingExpanded = true;
     private boolean completedExpanded = false;
+    private boolean missedExpanded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +55,22 @@ public class TargetActivity extends AppCompatActivity {
 
         rvPendingTasks = findViewById(R.id.rvPendingTasks);
         rvCompletedTasks = findViewById(R.id.rvCompletedTasks);
+        rvMissedTasks = findViewById(R.id.rvMissedTasks);
         tvLevelChip = findViewById(R.id.tvLevelChip);
         tvTargetsSummary = findViewById(R.id.tvTargetsSummary);
         tvPendingEmpty = findViewById(R.id.tvPendingEmpty);
         tvCompletedEmpty = findViewById(R.id.tvCompletedEmpty);
+        tvMissedEmpty = findViewById(R.id.tvMissedEmpty);
         badgePendingCount = findViewById(R.id.badgePendingCount);
         badgeCompletedCount = findViewById(R.id.badgeCompletedCount);
+        badgeMissedCount = findViewById(R.id.badgeMissedCount);
         arrowPending = findViewById(R.id.arrowPending);
         arrowCompleted = findViewById(R.id.arrowCompleted);
+        arrowMissed = findViewById(R.id.arrowMissed);
 
-        rvPendingTasks.setLayoutManager(new LinearLayoutManager(this));
-        rvCompletedTasks.setLayoutManager(new LinearLayoutManager(this));
+        rvPendingTasks.setLayoutManager(taskLayout());
+        rvCompletedTasks.setLayoutManager(taskLayout());
+        rvMissedTasks.setLayoutManager(taskLayout());
 
         findViewById(R.id.headerPending).setOnClickListener(v -> {
             pendingExpanded = !pendingExpanded;
@@ -72,6 +78,10 @@ public class TargetActivity extends AppCompatActivity {
         });
         findViewById(R.id.headerCompleted).setOnClickListener(v -> {
             completedExpanded = !completedExpanded;
+            setupTasks();
+        });
+        findViewById(R.id.headerMissed).setOnClickListener(v -> {
+            missedExpanded = !missedExpanded;
             setupTasks();
         });
 
@@ -101,12 +111,16 @@ public class TargetActivity extends AppCompatActivity {
             else pending.add(task);
         }
 
+        List<Task> missed = loadMissed();
+
         rvPendingTasks.setAdapter(new TaskControlAdapter(pending, activeTaskId));
         rvCompletedTasks.setAdapter(new TaskControlAdapter(completed, activeTaskId));
+        rvMissedTasks.setAdapter(new TaskControlAdapter(missed, activeTaskId));
 
         badgePendingCount.setText(String.valueOf(pending.size()));
         badgeCompletedCount.setText(String.valueOf(completed.size()));
-        tvTargetsSummary.setText(completed.size() + " of " + tasks.size() + " complete");
+        badgeMissedCount.setText(String.valueOf(missed.size()));
+        tvTargetsSummary.setText(completed.size() + " of " + tasks.size() + " completed");
 
         tvLevelChip.setText(readLevel());
 
@@ -117,6 +131,34 @@ public class TargetActivity extends AppCompatActivity {
         rvCompletedTasks.setVisibility(completedExpanded ? View.VISIBLE : View.GONE);
         arrowCompleted.setRotation(completedExpanded ? 0 : 180);
         tvCompletedEmpty.setVisibility(completedExpanded && completed.isEmpty() ? View.VISIBLE : View.GONE);
+
+        rvMissedTasks.setVisibility(missedExpanded ? View.VISIBLE : View.GONE);
+        arrowMissed.setRotation(missedExpanded ? 0 : 180);
+        tvMissedEmpty.setVisibility(missedExpanded && missed.isEmpty() ? View.VISIBLE : View.GONE);
+    }
+
+    private List<Task> loadMissed() {
+        List<Task> missed = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        try (Cursor c = db.rawQuery(
+                "SELECT " + DBHelper.TASK_ID + ", " + DBHelper.TASK_DATE + ", name, type, "
+                        + DBHelper.TASK_MINUTES + ", " + DBHelper.TASK_STATUS + ", sortOrder FROM "
+                        + DBHelper.TABLE_TASKS + " WHERE " + DBHelper.TASK_DATE + " < ? AND "
+                        + DBHelper.TASK_STATUS + " != 'Finished' ORDER BY " + DBHelper.TASK_DATE + " DESC",
+                new String[]{DateUtils.today()})) {
+            while (c.moveToNext()) {
+                Task t = new Task();
+                t.id = c.getInt(0);
+                t.date = c.getString(1);
+                t.name = c.getString(2);
+                t.type = c.getString(3);
+                t.minutes = c.getInt(4);
+                t.status = "Missed";
+                t.sortOrder = c.getInt(6);
+                missed.add(t);
+            }
+        }
+        return missed;
     }
 
     private String readLevel() {
@@ -129,7 +171,14 @@ public class TargetActivity extends AppCompatActivity {
         return "Beginner";
     }
 
+    private RecyclerView.LayoutManager taskLayout() {
+        return getResources().getConfiguration().screenWidthDp >= 600
+            ? new androidx.recyclerview.widget.GridLayoutManager(this, 2)
+            : new LinearLayoutManager(this);
+    }
+
     private void setupNavigation() {
+        findViewById(R.id.btnNotifications).setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
         findViewById(R.id.settingsb).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
         findViewById(R.id.homeb).setOnClickListener(v -> startActivity(new Intent(this, HomeActivity.class)));
         findViewById(R.id.targetb).setOnClickListener(v -> {});
@@ -166,7 +215,7 @@ public class TargetActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            TextView tvTaskName, tvTaskDuration;
+            TextView tvTaskName, tvTaskDuration, tvTaskStatus;
             Button btnStart, btnComplete;
             Task currentTask;
 
@@ -174,6 +223,7 @@ public class TargetActivity extends AppCompatActivity {
                 super(itemView);
                 tvTaskName = itemView.findViewById(R.id.tvTaskName);
                 tvTaskDuration = itemView.findViewById(R.id.tvTaskDuration);
+                tvTaskStatus = itemView.findViewById(R.id.tvTaskStatus);
                 btnStart = itemView.findViewById(R.id.btnStart);
                 btnComplete = itemView.findViewById(R.id.btnComplete);
             }
@@ -183,9 +233,15 @@ public class TargetActivity extends AppCompatActivity {
                 tvTaskName.setText(task.name);
                 tvTaskDuration.setText(task.minutes + " minutes");
 
-                if (task.status.equals("Finished")) {
-                    btnStart.setEnabled(false);
-                    btnStart.setText("DONE");
+                boolean finished = task.status.equals("Finished");
+                boolean missed = task.status.equals("Missed");
+                tvTaskStatus.setText(finished ? "Completed" : (missed ? "Missed" : "Pending"));
+                tvTaskStatus.setBackgroundResource(finished ? R.drawable.bg_status_completed
+                        : missed ? R.drawable.bg_status_missed
+                        : R.drawable.bg_status_pending);
+
+                if (finished || missed) {
+                    btnStart.setVisibility(View.GONE);
                     btnComplete.setVisibility(View.GONE);
                 } else if (activeId != null && !activeId.equals(task.id)) {
                     btnStart.setEnabled(false);
@@ -222,7 +278,7 @@ public class TargetActivity extends AppCompatActivity {
 
                 currentTask.status = "Finished";
 
-                Toast.makeText(TargetActivity.this, "Task completed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TargetActivity.this, "Target completed!", Toast.LENGTH_SHORT).show();
                 setupTasks();
             }
         }

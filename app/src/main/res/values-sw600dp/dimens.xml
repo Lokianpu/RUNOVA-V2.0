@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Large screens (tablets, open foldables, wide landscape): spacing only.
+     Colors, fonts, radii and components stay identical to phone layouts. -->
+<resources>
+    <dimen name="screen_padding">40dp</dimen>
+    <dimen name="card_padding">20dp</dimen>
+    <dimen name="card_gap">16dp</dimen>
+</resources>

@@ -27,10 +27,11 @@
 
                 <ImageButton
                     android:id="@+id/btnBack"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Back"
+                    android:padding="12dp"
                     android:src="@drawable/ic_chevron_left" />
 
                 <TextView
@@ -42,14 +43,6 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
-                <ImageButton
-                    android:id="@+id/settingsb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="settings"
-                    android:paddingVertical="10dp"
-                    android:src="@drawable/settingsb" />
 
             </LinearLayout>
 
@@ -63,8 +56,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No notifications"
-                android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textColor="#99FFFFFF"
+                android:textSize="14sp"
                 android:visibility="gone"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/space_8" />

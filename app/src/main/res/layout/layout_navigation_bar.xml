@@ -5,46 +5,47 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/navbg"
-    android:padding="25dp"
+    android:paddingHorizontal="25dp"
+    android:paddingVertical="21dp"
     android:elevation="8dp">
 
     <ImageButton
         android:id="@+id/homeb"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@android:color/transparent"
+        android:layout_width="@dimen/touch_target"
+        android:layout_height="@dimen/touch_target"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="homeb"
-        android:paddingTop="5dp"
+        android:padding="6dp"
         android:layout_weight="1"
         android:src="@drawable/homeb" />
 
     <ImageButton
         android:id="@+id/analyticsb"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@android:color/transparent"
+        android:layout_width="@dimen/touch_target"
+        android:layout_height="@dimen/touch_target"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="analyticsb"
-        android:paddingTop="5dp"
+        android:padding="6dp"
         android:layout_weight="1"
         android:src="@drawable/analyticsb" />
 
     <ImageButton
         android:id="@+id/targetb"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@android:color/transparent"
+        android:layout_width="@dimen/touch_target"
+        android:layout_height="@dimen/touch_target"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="targetb"
-        android:paddingTop="5dp"
+        android:padding="6dp"
         android:layout_weight="1"
         android:src="@drawable/targetb" />
 
     <ImageButton
         android:id="@+id/profileb"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@android:color/transparent"
+        android:layout_width="@dimen/touch_target"
+        android:layout_height="@dimen/touch_target"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="profileb"
-        android:paddingTop="5dp"
+        android:padding="6dp"
         android:layout_weight="1"
         android:src="@drawable/profileb" />
 

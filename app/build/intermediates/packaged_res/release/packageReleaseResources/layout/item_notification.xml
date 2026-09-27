@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/space_3"
-    app:cardBackgroundColor="@color/card_bg"
-    app:cardCornerRadius="@dimen/card_radius"
-    app:cardElevation="@dimen/card_elevation">
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="@color/input_bg"
+    app:cardCornerRadius="@dimen/card_radius_sm"
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Level up offer"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textColor="@color/button_primary"
+            android:textSize="15sp"
             android:layout_marginBottom="@dimen/space_3" />
 
         <LinearLayout
@@ -32,20 +33,28 @@
 
             <Button
                 android:id="@+id/btnOption1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/space_2"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="Option 1"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/button_primary"
-                android:layout_marginEnd="@dimen/space_2" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/btnOption2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="Option 2"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/button_primary" />
+                android:backgroundTint="@color/button_primary"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
