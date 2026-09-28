@@ -7,15 +7,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.runova.controllers.LevelCycleController;
 import com.runova.database.DBHelper;
+import com.runova.helpers.LevelUpDialog;
 import com.runova.helpers.WindowHelper;
 
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import java.util.List;
 
 public class NotificationsActivity extends AppCompatActivity {
     private DBHelper dbHelper;
-    private LevelCycleController levelCycleController;
     private RecyclerView rvNotifications;
     private TextView tvEmpty;
     private List<NotificationItem> notifications;
@@ -37,7 +35,6 @@ public class NotificationsActivity extends AppCompatActivity {
         WindowHelper.applyBottomInset(findViewById(R.id.navigationBar));
 
         dbHelper = new DBHelper(this);
-        levelCycleController = new LevelCycleController(dbHelper);
 
         rvNotifications = findViewById(R.id.rvNotifications);
         tvEmpty = findViewById(R.id.tvEmpty);
@@ -88,32 +85,8 @@ public class NotificationsActivity extends AppCompatActivity {
         public void onBindViewHolder(ViewHolder holder, int position) {
             NotificationItem item = notifications.get(position);
             holder.tvMessage.setText(item.message);
-
-            String currentLevel = levelCycleController.getCurrentLevel();
-            double passRate = levelCycleController.getPassRate();
-
-            if (passRate >= 0.85) {
-                String nextLevel = getNextLevel(currentLevel);
-                holder.btnOption1.setText("Move up to " + nextLevel);
-                holder.btnOption2.setText("Repeat " + currentLevel);
-
-                holder.btnOption1.setOnClickListener(v -> {
-                    levelCycleController.applyLevelChoice(nextLevel);
-                    loadNotifications();
-                });
-                holder.btnOption2.setOnClickListener(v -> {
-                    levelCycleController.applyLevelChoice(currentLevel);
-                    loadNotifications();
-                });
-            } else {
-                holder.btnOption1.setText("Repeat " + currentLevel);
-                holder.btnOption2.setVisibility(View.GONE);
-
-                holder.btnOption1.setOnClickListener(v -> {
-                    levelCycleController.applyLevelChoice(currentLevel);
-                    loadNotifications();
-                });
-            }
+            holder.itemView.setOnClickListener(v ->
+                    LevelUpDialog.show(NotificationsActivity.this, NotificationsActivity.this::loadNotifications));
         }
 
         @Override
@@ -123,21 +96,12 @@ public class NotificationsActivity extends AppCompatActivity {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             TextView tvMessage;
-            Button btnOption1, btnOption2;
 
             ViewHolder(View view) {
                 super(view);
                 tvMessage = view.findViewById(R.id.tvMessage);
-                btnOption1 = view.findViewById(R.id.btnOption1);
-                btnOption2 = view.findViewById(R.id.btnOption2);
             }
         }
-    }
-
-    private String getNextLevel(String current) {
-        if (current.equals("Beginner")) return "Intermediate";
-        if (current.equals("Intermediate")) return "Pro";
-        return "Pro";
     }
 
     private void setupNavigation() {

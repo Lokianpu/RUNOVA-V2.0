@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.runova.database.DBHelper;
+import com.runova.helpers.AboutDialog;
 import com.runova.helpers.DateUtils;
 import com.runova.helpers.ValidationHelper;
 import com.runova.helpers.WindowHelper;
@@ -53,6 +54,9 @@ public class SignupActivity extends AppCompatActivity {
         setupDatePicker();
 
         btnNext.setOnClickListener(v -> handleNext());
+
+        // First-time users only: no profile row yet (fresh install / onboarding not done).
+        AboutDialog.show(this);
     }
 
     private boolean profileExists() {

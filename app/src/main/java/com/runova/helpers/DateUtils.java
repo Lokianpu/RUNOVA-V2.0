@@ -7,12 +7,13 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DateUtils {
-    private static final SimpleDateFormat ISO_DATE = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+    private static final ThreadLocal<SimpleDateFormat> ISO_DATE =
+            ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd", Locale.US));
 
     // Calculate age from ISO date string
     public static int ageFrom(String dateOfBirth) {
         try {
-            Date dob = ISO_DATE.parse(dateOfBirth);
+            Date dob = ISO_DATE.get().parse(dateOfBirth);
             Calendar dobCal = Calendar.getInstance();
             dobCal.setTime(dob);
             
@@ -33,7 +34,7 @@ public class DateUtils {
     // Get weekday (1=Monday, 7=Sunday)
     public static int getWeekday(String date) {
         try {
-            Date d = ISO_DATE.parse(date);
+            Date d = ISO_DATE.get().parse(date);
             Calendar cal = Calendar.getInstance();
             cal.setTime(d);
             int day = cal.get(Calendar.DAY_OF_WEEK);
@@ -46,13 +47,13 @@ public class DateUtils {
 
     // Get today's date as ISO string
     public static String today() {
-        return ISO_DATE.format(new Date());
+        return ISO_DATE.get().format(new Date());
     }
 
     // Validate ISO date format
     public static boolean isValidDate(String date) {
         try {
-            ISO_DATE.parse(date);
+            ISO_DATE.get().parse(date);
             return true;
         } catch (ParseException e) {
             return false;
@@ -62,7 +63,7 @@ public class DateUtils {
     // Check if date is in future
     public static boolean isFuture(String date) {
         try {
-            Date d = ISO_DATE.parse(date);
+            Date d = ISO_DATE.get().parse(date);
             return d.after(new Date());
         } catch (ParseException e) {
             return false;
@@ -72,8 +73,8 @@ public class DateUtils {
     // Days between two dates
     public static long daysBetween(String startDate, String endDate) {
         try {
-            Date start = ISO_DATE.parse(startDate);
-            Date end = ISO_DATE.parse(endDate);
+            Date start = ISO_DATE.get().parse(startDate);
+            Date end = ISO_DATE.get().parse(endDate);
             long diff = end.getTime() - start.getTime();
             return diff / (1000 * 60 * 60 * 24);
         } catch (ParseException e) {

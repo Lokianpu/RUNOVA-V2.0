@@ -20,6 +20,7 @@ import com.runova.controllers.LevelCycleController;
 import com.runova.controllers.TaskGenerator;
 import com.runova.database.DBHelper;
 import com.runova.helpers.DateUtils;
+import com.runova.helpers.LevelUpDialog;
 import com.runova.helpers.WindowHelper;
 import com.runova.models.Task;
 
@@ -139,48 +140,15 @@ public class HomeActivity extends AppCompatActivity {
 
     private void checkLevelUpPrompt() {
         if (levelCycleController.shouldShowLevelUpPrompt()) {
-            showLevelUpDialog();
+            LevelUpDialog.show(this, this::recreate);
         }
     }
 
-    private void showLevelUpDialog() {
-        String currentLevel = levelCycleController.getCurrentLevel();
-        double passRate = levelCycleController.getPassRate();
-
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-        builder.setTitle("Level Cycle Complete");
-
-        if (passRate >= 0.85) {
-            String nextLevel = getNextLevel(currentLevel);
-            builder.setMessage("You finished " + (int)(passRate * 28) + " of 28 days! Move up to " + nextLevel + " or repeat " + currentLevel + "?");
-            builder.setPositiveButton("Move up to " + nextLevel, (dialog, which) -> {
-                levelCycleController.applyLevelChoice(nextLevel);
-                recreate();
-            });
-            builder.setNegativeButton("Repeat " + currentLevel, (dialog, which) -> {
-                levelCycleController.applyLevelChoice(currentLevel);
-                recreate();
-            });
-        } else {
-            builder.setMessage("You finished " + (int)(passRate * 28) + " of 28 days. Need 24 days to advance. Repeat " + currentLevel + "?");
-            builder.setPositiveButton("Repeat " + currentLevel, (dialog, which) -> {
-                levelCycleController.applyLevelChoice(currentLevel);
-                recreate();
-            });
-        }
-
-        builder.setOnDismissListener(dialog -> {
-            String message = passRate >= 0.85 ? "Level up offer available" : "Repeat level offer available";
-            levelCycleController.createLevelUpOffer(message);
-        });
-
-        builder.show();
-    }
-
-    private String getNextLevel(String current) {
-        if (current.equals("Beginner")) return "Intermediate";
-        if (current.equals("Intermediate")) return "Pro";
-        return "Pro";
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupLevelProgress();
+        setupStatusCounts(setupTasks());
     }
 
     static class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {

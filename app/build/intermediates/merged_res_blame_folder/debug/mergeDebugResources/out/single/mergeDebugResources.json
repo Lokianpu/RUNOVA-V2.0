@@ -32,6 +32,10 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/bg_btn_secondary.xml"
     },
     {
+        "merged": "com.runova.app-debug-35:/layout_item_notification.xml.flat",
+        "source": "com.runova.app-main-37:/layout/item_notification.xml"
+    },
+    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_bg_status_completed.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/bg_status_completed.xml"
     },
@@ -202,10 +206,6 @@
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/mipmap-xxxhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "com.runova.app-debug-35:/layout_activity_timer.xml.flat",
-        "source": "com.runova.app-main-37:/layout/activity_timer.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/mipmap-xxhdpi_ic_launcher_round.webp.flat",

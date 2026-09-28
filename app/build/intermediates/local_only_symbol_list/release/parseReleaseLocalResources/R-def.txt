@@ -53,7 +53,6 @@ drawable bg_status_missed
 drawable bg_status_pending
 drawable bg_summary_card
 drawable dumbbell
-drawable eat
 drawable homeb
 drawable ic_arrow_down
 drawable ic_cancel
@@ -64,15 +63,12 @@ drawable ic_history
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_notification_alarm
-drawable ic_sleep
 drawable jogging
 drawable logo
-drawable meditation
 drawable navbg
 drawable profileb
 drawable settingsb
 drawable targetb
-drawable water
 id analyticsb
 id arrowCompleted
 id arrowMissed
@@ -90,8 +86,6 @@ id btnEditProfile
 id btnFinish
 id btnNext
 id btnNotifications
-id btnOption1
-id btnOption2
 id btnPrimary
 id btnReset
 id btnSave
@@ -107,7 +101,6 @@ id headerCompleted
 id headerMissed
 id headerPending
 id homeb
-id layoutActions
 id navigationBar
 id profileEditBlock
 id profileViewBlock

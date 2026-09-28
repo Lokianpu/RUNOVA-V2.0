@@ -73,16 +73,35 @@ public class TimerController {
             int pausedIndex = cursor.getColumnIndex(DBHelper.PROFILE_ACTIVE_TASK_PAUSED);
 
             if (!cursor.isNull(idIndex)) {
+                int activeTaskId = cursor.getInt(idIndex);
                 boolean paused = cursor.getInt(pausedIndex) != 0;
                 long end = cursor.getLong(endIndex);
                 long remaining = paused ? end : end - System.currentTimeMillis();
                 if (paused || remaining > 0) {
-                    state = new ActiveState(cursor.getInt(idIndex), Math.max(0, remaining), paused);
+                    state = new ActiveState(activeTaskId, Math.max(0, remaining), paused);
+                } else {
+                    cursor.close();
+                    autoCompleteExpiredTask(activeTaskId);
+                    return null;
                 }
             }
         }
         cursor.close();
         return state;
+    }
+
+    private void autoCompleteExpiredTask(int taskId) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues taskValues = new ContentValues();
+        taskValues.put(DBHelper.TASK_STATUS, "Finished");
+        db.update(DBHelper.TABLE_TASKS, taskValues, DBHelper.TASK_ID + " = ?",
+                new String[]{String.valueOf(taskId)});
+
+        ContentValues profileValues = new ContentValues();
+        profileValues.putNull(DBHelper.PROFILE_ACTIVE_TASK_ID);
+        profileValues.putNull(DBHelper.PROFILE_ACTIVE_TASK_END);
+        profileValues.put(DBHelper.PROFILE_ACTIVE_TASK_PAUSED, 0);
+        db.update(DBHelper.TABLE_PROFILE, profileValues, DBHelper.PROFILE_ID + " = 1", null);
     }
 
     public void clearTimer() {

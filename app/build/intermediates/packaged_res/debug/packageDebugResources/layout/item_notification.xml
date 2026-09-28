@@ -21,42 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Level up offer"
             android:textColor="@color/button_primary"
-            android:textSize="15sp"
-            android:layout_marginBottom="@dimen/space_3" />
-
-        <LinearLayout
-            android:id="@+id/layoutActions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end">
-
-            <Button
-                android:id="@+id/btnOption1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="@dimen/space_2"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="Option 1"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/button_primary"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/btnOption2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="Option 2"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/button_primary"
-                android:textSize="12sp" />
-
-        </LinearLayout>
+            android:textSize="15sp" />
 
     </LinearLayout>
 

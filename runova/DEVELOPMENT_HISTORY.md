@@ -748,7 +748,302 @@ for the first time, and the notification bell works.
 ---
 
 
-## Current State (2026-09-26 09:05 UTC)
+## Session 11: Design Consistency, Responsive Layouts, Chart Fixes & Timer Rework (2026-09-28)
+
+### Phase: UI Consistency + Adaptive Layouts + Device Verification
+
+**Duration:** ~4-5 hours
+
+**Objective:** Apply the reference design across every screen (cards, colors,
+typography, icons, terminology), add Week/Month/Year analytics charts, remove
+all touch/ripple effects, make layouts adaptive for phones/foldables/tablets,
+and verify everything on a real emulator - ending with a full Timer rework
+giving the user complete control of the countdown.
+
+**Changes Made:**
+
+#### 1. Header, navigation and touch targets
+- Bell added to Analytics, Profile and Target headers (wired to
+  `NotificationsActivity`); all bell/settings icons 24dp visual inside 48dp
+  touch targets (`touch_target`, 12dp padding, 8dp marginStart)
+- `fillViewport=true` on all four scrolling screens
+- Nav bar buttons 40dp -> 48dp with 6dp padding, bar padding 25dp/21dp (fixed
+  90dp height); `SettingsActivity.setupNavigation()` wired (home finishes,
+  target/analytics/profile navigate)
+- Invisible `settingsb` removed from the Profile header (layout + Java)
+- Back buttons on Notifications/Settings normalized to 48dp targets
+
+**Why:** V8 spec + user decision: identical header/footers on all four main
+screens, no dead controls, 48dp minimum touch areas.
+
+#### 2. Dashboard restructure (Home)
+- Rebuilt `activity_home.xml`: date card -> `28 Days Progress` (full-width bar)
+  -> `Today's Status` (Completed green / Pending amber / Missed red columns) ->
+  `Today's Target` (light rows + status chips + `View all`)
+- New `helpers/StatsHelper.java` shared by Home/Analytics/Profile for
+  `sessions()` and `streak()`; streak fixed so an unfinished *today* no longer
+  breaks it (spec RULES.md:196-212)
+- `item_task_card.xml` flattened; rows open Target on click
+
+**Why:** User-driven info architecture; streak bug was spec-violating.
+
+#### 3. Target screen + terminology
+- Title `Today's Target`; sections `Pending Targets` / `Completed Targets` /
+  new `Missed Targets` (collapsible, past unfinished rows displayed as Missed -
+  DB keeps `Finished`/`Pending`, no migration)
+- Summary `X of Y completed`; rows got status chips; active row
+  RESUME+COMPLETE; Finished/Missed rows hide action buttons
+- Display-only term pass: `Finished`->`Completed` (labels, chart legend), timer
+  `DONE`->`COMPLETE`; DB values untouched per spec lock
+
+**Why:** User terminology decision; spec forbids changing stored status values.
+
+#### 4. Analytics Week/Month/Year charts
+- Tab strip (`bg_chip` selected) driving `setRange()`/`loadChart()`;
+  `weekEntries()` daily bars, `monthEntries()` W1-W5 buckets, `yearEntries()`
+  Jan-Dec % of fully-finished days; caption "shows all activity, even across
+  level changes"; 12sp white axis/legend/values
+- Status Counts card `input_bg`->`card_bg` with colored counts, reordered
+  Completed|Pending|Missed; progress bar tinted `status_success`
+- **Two bugs found during on-device verification and fixed:**
+  1. `Calendar.set(DAY_OF_WEEK, MONDAY)` on a Sunday-first locale resolved to
+     *next* Monday, so the week window excluded today and the chart always read
+     0 -> replaced with an add-based offset to Monday
+  2. Zero-data charts rendered a -1.2..1.2 Y axis -> `setAxisMinimum(0f)`
+
+**Why:** Requirement was three ranges; the two defects only reproduced on a
+real device with real data.
+
+#### 5. Profile, Settings, Notifications, dialogs
+- Profile: view/edit mode toggle, buttons (`EDIT PROFILE`, `About RUNOVA`)
+  wrapped in a card matching My Stats, V8 level-change dialog text, wipes
+  `tasks`+`notifications` on level change
+- Settings trimmed to approved scope: Reminders switch (pref-only, no reminder
+  backend exists), Dark Mode switch, About card; nav bar wired
+- Notifications header back+title only (removed settings icon)
+- New `Theme.RUNOVA.AlertDialog` (blue surface, white text/buttons) used by all
+  confirm dialogs; titles normalized to 24sp; `item_notification` light row
+  (card radius, 2dp, 15sp dark text); empty states 14sp `#99FFFFFF`
+- **All ripple/touch effects removed** at theme level: 8 transparent attributes
+  in `values/themes.xml` (selectableItemBackground x3, rippleColor,
+  colorControlHighlight, list highlights) + `Theme.RUNOVA.Button` via
+  `materialButtonStyle` (no ripple, no lift). EditText caret/underline, switch
+  and spinner mechanics kept.
+
+**Why:** User decisions: settings scope cut, zero visual touch feedback, one
+consistent dialog style.
+
+#### 6. Responsive / adaptive (phones, foldables, tablets)
+- `item_task_control.xml` two-row card: name+chip row, duration+buttons row;
+  name/duration/greeting ellipsize with maxLines=1; 100dp minWidth dropped
+- `item_notification` action buttons weight-based (0dp + weight1, 12sp,
+  maxLines 2)
+- `activity_timer.xml` root -> ScrollView + fillViewport (only screen without
+  one)
+- New `values-sw600dp/dimens.xml` (spacing only: padding/gaps)
+- `HomeActivity` + `TargetActivity` GridLayoutManager span=2 when
+  `screenWidthDp >= 600` (each Target list gets its own manager instance)
+- Verified via `wm size/density` overrides: 320dp phone, 800dp tablet, landscape
+
+**Why:** Spec invariant - only spacing scales; colors/radius/fonts/components
+identical everywhere, no duplicated layouts, no manifest changes.
+
+#### 7. Timer rework (user-controlled countdown)
+- Single `btnPrimary` with three states on the SAME view (zero relayout,
+  proven by identical uiautomator bounds across state changes):
+  START blue -> PAUSE red (`status_missed_icon`) -> RESUME green
+  (`status_success`); removed the `btnResume` visibility swap that caused
+  re-layout
+- Timer no longer auto-starts on entry: READY state shows full duration with
+  `Ready to start` caption; counting begins only on START
+- New RESET button (secondary style `bg_btn_secondary`) with confirm dialog
+  ("Reset timer" / "The timer will start again from the beginning." /
+  CANCEL|RESET); on confirm -> `clearTimer()` + full duration + READY (Option A,
+  no auto-restart)
+- `← BACK TO TASKS` -> 24dp `ic_chevron_left` + `BACK TO TARGET`
+- State caption under digits (Ready to start / Running / Paused); COMPLETE flow
+  unchanged
+
+**Why:** User requirements: fixed button positions, red pause -> green resume,
+full manual control of start, reset with popup, correct back label.
+
+#### 8. On-device verification pass
+- Pixel_6a emulator (headless swiftshader), APK installed, walked every flow
+  with uiautomator dumps + screencaps into `/tmp/runova_shots/`: Signup, Home,
+  Target (complete flow, sections), Analytics (3 tabs), Profile (view/edit),
+  Settings, Notifications, Timer (portrait/landscape), 320dp, 800dp tablet
+- Noted environment quirks (not app bugs): emulator occasionally drops a tap
+  and screencap can return one stale frame - re-tap/re-shoot resolves
+
+**Files Created/Modified:**
+```
+app/src/main/res/layout/activity_home.xml (rebuilt)
+app/src/main/res/layout/activity_target.xml
+app/src/main/res/layout/activity_analytics.xml
+app/src/main/res/layout/activity_profile.xml
+app/src/main/res/layout/activity_settings.xml
+app/src/main/res/layout/activity_notifications.xml
+app/src/main/res/layout/activity_timer.xml (rebuilt)
+app/src/main/res/layout/item_task_card.xml (rebuilt)
+app/src/main/res/layout/item_task_control.xml (two-row)
+app/src/main/res/layout/item_notification.xml
+app/src/main/res/layout/layout_navigation_bar.xml
+app/src/main/res/values/themes.xml (ripple removal, button style, dialog theme)
+app/src/main/res/values/colors.xml (status_pending)
+app/src/main/res/values-sw600dp/dimens.xml (new)
+app/src/main/res/drawable/bg_btn_secondary.xml (new)
+app/src/main/java/com/runova/HomeActivity.java
+app/src/main/java/com/runova/TargetActivity.java
+app/src/main/java/com/runova/AnalyticsActivity.java
+app/src/main/java/com/runova/ProfileActivity.java
+app/src/main/java/com/runova/NotificationsActivity.java
+app/src/main/java/com/runova/SettingsActivity.java (new this batch, nav wired)
+app/src/main/java/com/runova/TimerActivity.java (3-state rework)
+app/src/main/java/com/runova/helpers/StatsHelper.java (new)
+```
+
+**Key Decisions:**
+- Missed is derived (past + not Finished), never written to the DB - spec
+  locks status values
+- Ripple removal done in the theme instead of per-view so every current and
+  future view inherits it; function (caret, switch, spinner) preserved
+- Responsive work scales spacing only; grid span2 only where lists exist
+  (Home today list, three Target lists)
+- Timer state machine uses one button view with text+tint changes rather than
+  swapping views - relayout was the reported defect
+- Reset returns to READY (Option A) so the user retains full control
+
+---
+
+## Session 12: Offline Audit, Concurrency Fix, Timer Background Expiration & Spec Alignment (2026-09-28)
+
+### Phase: Quality Assurance + Defect Resolution + Spec Cleanliness
+
+**Duration:** ~1 hour
+
+**Objective:** Audit the codebase for offline compliance and requirement conflicts, resolve static thread concurrency hazards in DateUtils, fix background timer expiration handling, eliminate navigation back-stack leakage in Settings, clean up out-of-scope legacy drawables, and add concurrency unit tests.
+
+**Changes Made:**
+
+#### 1. Concurrency Fix in DateUtils
+- Replaced non-thread-safe static `SimpleDateFormat ISO_DATE` in `DateUtils.java` with `ThreadLocal<SimpleDateFormat>`.
+- Updated all accessor methods (`ageFrom`, `getWeekday`, `today`, `isValidDate`, `isFuture`, `daysBetween`) to use `ISO_DATE.get()`.
+
+**Why:** `LoadingActivity` executes `TaskGenerator.generateDailyTasks()` on a background thread while UI components access `DateUtils` on the Main thread. Shared mutable `SimpleDateFormat` state risked parsing corruption and `NumberFormatException`.
+
+#### 2. Background Timer Expiration in TimerController
+- Enhanced `TimerController.readState()`: when `activeTaskId` exists, `activeTaskPaused` is false, and `remaining <= 0` (timer expired while app was minimized/killed), automatically marks the task as `Finished` in SQLite `tasks` table and clears active timer columns in `profile`.
+
+**Why:** Previously, backgrounded timer expiration returned `null` without updating the database, leaving the completed task in `Pending` and profile in a stale state.
+
+#### 3. Settings Navigation Back-Stack Normalization
+- Added `finish()` to `targetb`, `analyticsb`, and `profileb` listeners in `SettingsActivity.java`.
+
+**Why:** Tapping bottom navigation tabs from Settings previously left `SettingsActivity` alive in the activity back-stack.
+
+#### 4. Legacy Asset Deletion
+- Deleted `app/src/main/res/drawable/water.xml`, `eat.xml`, `meditation.xml`, and `ic_sleep.xml`.
+
+**Why:** Project charter explicitly forbids nutrition, hydration, sleep, and meditation features. Deleting unreferenced draft icons enforces strict spec adherence.
+
+#### 5. Unit Testing
+- Added `DateUtilsTest.java` verifying date logic and executing 10 concurrent threads over 50 iterations against `DateUtils` methods with zero race conditions or errors.
+- Verified all 12 unit tests pass (`LevelPlanTest` 9, `DateUtilsTest` 2, `ExampleUnitTest` 1).
+
+**Files Created/Modified:**
+```
+app/src/main/java/com/runova/helpers/DateUtils.java (modified)
+app/src/main/java/com/runova/controllers/TimerController.java (modified)
+app/src/main/java/com/runova/SettingsActivity.java (modified)
+app/src/test/java/com/runovav6/DateUtilsTest.java (new)
+app/src/main/res/drawable/water.xml (deleted)
+app/src/main/res/drawable/eat.xml (deleted)
+app/src/main/res/drawable/meditation.xml (deleted)
+app/src/main/res/drawable/ic_sleep.xml (deleted)
+```
+
+**Verification:**
+- `./gradlew test` -> BUILD SUCCESSFUL (12 tests pass)
+- `./gradlew assembleDebug` -> BUILD SUCCESSFUL
+
+---
+
+## Session 13: Welcome Dialog, Official Documentation & Level-Up System Rework (2026-09-28)
+
+### Phase: Onboarding Polish + Documentation + Level-Up UX Overhaul
+
+**Duration:** ~2 hours
+
+**Objective:** Add a first-time-only welcome/disclaimer dialog before Sign Up, export the official project documentation as a Word file for panel presentation, then rework the level-up system: shared dialog across Home and Notifications, polished congratulation wording including a dedicated Pro-level branch, button-free notification rows, data continuation on level-up (wipe reserved for Profile edit only), and fix the stale level-up offer defect.
+
+**Changes Made:**
+
+#### 1. First-Launch Welcome Dialog
+- Created `helpers/AboutDialog.java` as the single owner of the welcome/disclaimer text (exact copy of the former About RUNOVA popup: "Before you start" + runner guidance + health disclaimer), `setCancelable(false)` with an OK button.
+- `SignupActivity.onCreate()`: shows the dialog on the no-profile path (fresh install or onboarding not completed). Profile-exists path returns before it, so returning users never see it.
+- `ProfileActivity.showAboutPopup()` now delegates to `AboutDialog.show()` (zero text duplication).
+
+**Why:** Spec/PRD requires a welcome message before the user inputs sign-up data, shown only to first-time users. Gate = `!profileExists()` — covers both fresh install and "no data entered" conditions with one check; no SharedPreferences flag (a once-per-install flag would suppress the dialog when data is still absent).
+
+#### 2. Official Documentation Export
+- Generated `RUNOVA_Official_Documentation.docx` (repo root): 14 sections covering concept, tools, architecture, principles, database, training engine, features, navigation, design system, development history, QA, scope, inventory, conclusion; 12 bordered tables, heading styles, black-on-white, no icons/emoji.
+- Pipeline: clean HTML -> macOS `textutil` (tables flattened, rejected) -> Microsoft Word AppleScript conversion (real tables preserved).
+
+**Why:** Panel deliverable required as a single .doc/.docx file, text-only.
+
+#### 3. Level-Up Test Data Runs (temporary, deleted)
+- Seeded the SQLite DB via `run-as` + host `sqlite3` (backup -> seed -> push) to trigger day-28/85% conditions without waiting; scenarios: move-up 100%, repeat, fail 71%, bell path, threshold edge 24 vs 23 days. All passed.
+- **Defect found:** `setOnDismissListener` in the old Home dialog fired after button clicks too, re-inserting an unresolved `LEVEL_UP_OFFER` after the choice was already applied (false bell notification; suppressed next cycle's Home prompt).
+
+**Why:** Proved the level-up function end-to-end before reworking it. All seeds/backups destroyed on "del test"; real profile restored and verified.
+
+#### 4. Shared LevelUpDialog + Wording Rework
+- Created `helpers/LevelUpDialog.java`: one dialog used by Home and Notifications.
+  - Pass (Beginner/Intermediate): title "Congratulations!", message congratulating readiness for the next level, buttons **Move to Next Level** / **Continue Current Level** (the word "Repeat" removed everywhere).
+  - Pass (Pro): dedicated branch - grateful message stating Pro is the highest level, no next level exists, invitation to keep streak and keep using the app, single **Continue Current Level** button.
+  - Fail (any level): title "Level Cycle Complete", "You finished X of 28 days this cycle. You need 24 days to move up. Continue with [level] to start a new cycle?", single Continue button.
+  - Dismiss guard (`choiceApplied` flag): offer row created only when dismissed without a choice - fixes the Session 13 defect (3).
+  - Notification labels: `Congratulations! level up available` / `Congratulations! Pro level complete` / `Level cycle complete`.
+- `HomeActivity`: inline dialog (~40 lines) + `getNextLevel` deleted -> `LevelUpDialog.show(this, this::recreate)`; added `onResume()` refresh of level progress + task list + status counts (fixes stale "Day 28 of 28" and stale counts when returning from Notifications or Target).
+
+#### 5. Notification Rows: Label Only, Tap Opens Dialog
+- `item_notification.xml`: removed the two action buttons (entire `layoutActions` block) - rows show only the short label.
+- `NotificationsActivity`: button logic, `getNextLevel`, and controller field deleted; whole row clickable -> `LevelUpDialog.show(...)`; list refreshes after a choice (offer resolves -> empty state). Applies uniformly to all levels and any future notification type: rows never hold buttons; buttons live only in the dialog opened by tapping.
+
+#### 6. Data Continuation Rule
+- Removed `db.delete(TABLE_TASKS, ...)` from `LevelCycleController.applyLevelChoice` (one line). Level-up/continue now updates `level` + `levelStartDate` only: task history is preserved, so weekly/monthly/yearly analytics stay continuous across a level change. The only wipe authority left is the Profile level edit (`ProfileActivity.saveLevelChange` + confirmation dialog), unchanged.
+
+**Files Created/Modified:**
+```
+app/src/main/java/com/runova/helpers/AboutDialog.java (new)
+app/src/main/java/com/runova/helpers/LevelUpDialog.java (new)
+app/src/main/java/com/runova/SignupActivity.java (modified)
+app/src/main/java/com/runova/ProfileActivity.java (modified)
+app/src/main/java/com/runova/HomeActivity.java (modified)
+app/src/main/java/com/runova/NotificationsActivity.java (modified)
+app/src/main/java/com/runova/controllers/LevelCycleController.java (modified)
+app/src/main/res/layout/item_notification.xml (modified)
+RUNOVA_Official_Documentation.docx (new, repo root)
+```
+
+**Why:** User-driven UX decisions: welcome popup before onboarding for first-timers only; congratulation-style level-up flow with proceed/continue wording; Pro users congratulated without a fake next level; notifications tappable instead of inline actions; level-up must never destroy usage history while Profile edit remains the explicit wipe path.
+
+**Key Decisions:**
+- Single gate for the welcome dialog: `!profileExists()` (fresh install OR no data both covered; returning users bypass SignupActivity entirely).
+- One shared dialog class for Home + Notifications = one wording source, consistent across all levels.
+- Pro branch inside the same dialog (no separate Pro class) - consistency by construction.
+- Level-up never wipes tasks; Profile level change is the sole authorized wipe (confirm dialog retained).
+- Dismiss guard instead of restructuring listener timing (4-line fix, root cause addressed).
+- Test data strictly temporary: backup/seed/push/restore cycle, artifacts deleted on "del test".
+
+**Verification:**
+- `./gradlew assembleDebug test` -> BUILD SUCCESSFUL (12 unit tests, 0 failures)
+- On device: welcome dialog before Sign Up (fresh install), absent for returning users; all three level-up dialogs screenshot-verified; inbox rows button-free with correct labels; row tap opens identical dialog; move-up keeps history (27-28 past task rows intact); Pro continue resets cycle only; offer resolved after every choice (no stale rows); Home shows "Day 1 of 28" after choice
+- Test seeds and screenshots cleaned; real profile restored (`loki | Beginner | 2026-09-28`, 3 tasks, 0 notifications)
+
+---
+
+## Current State (2026-09-28 16:30 UTC)
 
 ### All Core Phases Complete ✅
 
@@ -766,7 +1061,22 @@ for the first time, and the notification bell works.
 - ✅ Unit tests pass: 10 tests (Session 10)
 - ✅ Offline operation (no network calls, pure SQLite)
 - ✅ Database persistence (3 tables: profile, tasks, notifications)
-- ✅ All 8 Activities functional
+- ✅ Consistent design system: card/text/dialog/touch-target rules applied to all screens (Session 11)
+- ✅ Bell + settings icons on all 4 main screens, 48dp touch targets, 48dp nav buttons (Session 11)
+- ✅ Home dashboard: 28 Days Progress + Today's Status trio + Today's Target (Session 11)
+- ✅ Target: Pending/Completed/Missed sections, status chips, display-only Completed terminology (Session 11)
+- ✅ Analytics Week/Month/Year charts with working week window + non-negative axis (Session 11, 2 bugs fixed)
+- ✅ No ripple/touch feedback anywhere (theme-level removal) (Session 11)
+- ✅ Adaptive layouts verified at 320dp phone / landscape / 800dp tablet (spacing-only scaling, grid span2) (Session 11)
+- ✅ Timer fully user-controlled: START/PAUSE(red)/RESUME(green) fixed in place, RESET with dialog, BACK TO TARGET (Session 11)
+- ✅ Full on-device verification of every screen (Session 11)
+- ✅ First-launch welcome/disclaimer dialog before Sign Up, first-time users only (Session 13)
+- ✅ Official documentation exported to RUNOVA_Official_Documentation.docx, 14 sections (Session 13)
+- ✅ Level-up system reworked: shared dialog, congratulation wording, Pro branch with single Continue, polished notification labels (Session 13)
+- ✅ Notification rows: label only + tap-to-dialog, no inline buttons, all levels (Session 13)
+- ✅ Level-up keeps task history (wipe reserved for Profile edit only) (Session 13)
+- ✅ Stale level-up offer defect fixed (dismiss guard) (Session 13)
+- ✅ All 10 Activities functional
 
 **Build Status:** ✅ BUILD SUCCESSFUL  
 **APK Location:** `/Users/loki/RUNOVAV62/app/build/outputs/apk/debug/app-debug.apk`  
@@ -775,11 +1085,11 @@ for the first time, and the notification bell works.
 **Target SDK:** 34 (Android 14)
 
 **Architecture Summary:**
-- **22 Java files total**
-- **8 Activities:** MainActivity, SignupActivity, QuestionnaireActivity, HomeActivity, TargetActivity, AnalyticsActivity, ProfileActivity, NotificationsActivity
+- **27 Java files total**
+- **10 Activities:** SignupActivity, QuestionnaireActivity, LoadingActivity, HomeActivity, TargetActivity, AnalyticsActivity, ProfileActivity, NotificationsActivity, SettingsActivity, TimerActivity
 - **3 Controllers:** TaskGenerator, TimerController, LevelCycleController
 - **5 Models:** Profile, Task, Notification, DayTemplate, TaskTemplate
-- **3 Helpers:** DateUtils, ValidationHelper, WindowHelper
+- **6 Helpers:** DateUtils, ValidationHelper, WindowHelper, StatsHelper, AboutDialog, LevelUpDialog
 - **2 Training classes:** LevelPlan, TrainingContentLibrary
 - **1 Database helper:** DBHelper
 - **Pattern:** Simple MVC, no over-engineering
@@ -799,6 +1109,13 @@ for the first time, and the notification bell works.
 3. **Dead style.** `res/values-night/themes.xml` defines `Base.Theme.RUNOVAV6`,
    which nothing references (the app uses `Base.Theme.RUNOVA`). Harmless; left
    in place, still open.
+4. ~~**Week chart always 0.**~~ **FIXED in Session 11.** `set(DAY_OF_WEEK,
+   MONDAY)` resolved to next Monday on a Sunday-first locale; replaced with an
+   add-based offset. Negative Y axis on zero data also fixed (`setAxisMinimum(0)`).
+5. **`lintDebug` fails environmentally** (AGP requires JDK 17, environment has
+   JDK 11/26 only) - pre-existing, not a code defect; `assembleDebug` + `test` pass.
+6. **Settings Dark Mode switch is preference-only** - no light theme consumer
+   verified on device (accepted scope, Session 11).
 
 **Potential Edge Cases to Test:**
 - Timer behavior during low battery mode
@@ -1022,9 +1339,9 @@ Any key decisions made?:
 ```
 
 
-*Last Updated: 2026-09-26 09:05 UTC*  
-*Total Development Time: ~25-30 hours across 8 phases*  
-*Sessions: 9 (Foundation + Welcome + Onboarding + Home + Target + Analytics + Profile + LevelCycle + Full-Screen Chrome + Fixes & Verification)*  
-*Total Files: 22 Java classes + layouts + resources*  
-*Unit Tests: 10 passing (LevelPlanTest 9, ExampleUnitTest 1)*  
+*Last Updated: 2026-09-28 16:30 UTC*  
+*Total Development Time: ~35-40 hours across 8 phases*  
+*Sessions: 13 (Foundation + Welcome + Onboarding + Home + Target + Analytics + Profile + LevelCycle + Full-Screen Chrome + Fixes & Verification + Design Consistency / Responsive / Charts / Timer + Offline Audit / Concurrency / Timer Expiration + Welcome Dialog / Documentation / Level-Up Rework)*  
+*Total Files: 27 Java classes + layouts + resources*  
+*Unit Tests: 12 passing (LevelPlanTest 9, DateUtilsTest 2, ExampleUnitTest 1)*  
 *Build Status: SUCCESS ✅*

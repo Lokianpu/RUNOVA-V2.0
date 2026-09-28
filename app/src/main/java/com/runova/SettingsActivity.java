@@ -42,9 +42,18 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(new Intent(this, HomeActivity.class));
             finish();
         });
-        findViewById(R.id.targetb).setOnClickListener(v -> startActivity(new Intent(this, TargetActivity.class)));
-        findViewById(R.id.analyticsb).setOnClickListener(v -> startActivity(new Intent(this, AnalyticsActivity.class)));
-        findViewById(R.id.profileb).setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+        findViewById(R.id.targetb).setOnClickListener(v -> {
+            startActivity(new Intent(this, TargetActivity.class));
+            finish();
+        });
+        findViewById(R.id.analyticsb).setOnClickListener(v -> {
+            startActivity(new Intent(this, AnalyticsActivity.class));
+            finish();
+        });
+        findViewById(R.id.profileb).setOnClickListener(v -> {
+            startActivity(new Intent(this, ProfileActivity.class));
+            finish();
+        });
     }
 
     private void setupSwitch(SwitchMaterial toggle, String key, boolean def) {

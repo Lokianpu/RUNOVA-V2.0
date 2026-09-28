@@ -3034,7 +3034,6 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable dumbbell
-drawable eat
 drawable homeb
 drawable ic_arrow_back_black_24
 drawable ic_arrow_down
@@ -3063,7 +3062,6 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notification_alarm
 drawable ic_search_black_24
-drawable ic_sleep
 drawable jogging
 drawable logo
 drawable m3_avd_hide_password
@@ -3087,7 +3085,6 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
-drawable meditation
 drawable mtrl_bottomsheet_drag_handle
 drawable mtrl_checkbox_button
 drawable mtrl_checkbox_button_checked_unchecked
@@ -3146,7 +3143,6 @@ drawable targetb
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
-drawable water
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -3262,8 +3258,6 @@ id btnEditProfile
 id btnFinish
 id btnNext
 id btnNotifications
-id btnOption1
-id btnOption2
 id btnPrimary
 id btnReset
 id btnSave
@@ -3413,7 +3407,6 @@ id jumpToEnd
 id jumpToStart
 id labeled
 id layout
-id layoutActions
 id left
 id leftToRight
 id legacy

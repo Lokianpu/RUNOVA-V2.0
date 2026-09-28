@@ -84,8 +84,6 @@ public class LevelCycleController {
         values.put(DBHelper.PROFILE_LEVEL_START, DateUtils.today());
         db.update(DBHelper.TABLE_PROFILE, values, DBHelper.PROFILE_ID + " = 1", null);
 
-        db.delete(DBHelper.TABLE_TASKS, null, null);
-
         db.execSQL("UPDATE " + DBHelper.TABLE_NOTIFICATIONS +
                 " SET " + DBHelper.NOTIF_RESOLVED + " = 1 WHERE " +
                 DBHelper.NOTIF_TYPE + " = 'LEVEL_UP_OFFER'");

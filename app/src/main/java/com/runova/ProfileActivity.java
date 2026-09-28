@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.runova.database.DBHelper;
+import com.runova.helpers.AboutDialog;
 import com.runova.helpers.DateUtils;
 import com.runova.helpers.StatsHelper;
 import com.runova.helpers.WindowHelper;
@@ -260,18 +261,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showAboutPopup() {
-        new AlertDialog.Builder(this)
-                .setTitle("Before you start 👟")
-                .setMessage("Hello, runner! RUNOVA is an offline training guide made for a school project. " +
-                        "It gives you a daily set of tasks, but it can't track your distance, speed or heart rate. " +
-                        "Nothing here is automatic.\n\n" +
-                        "That means you could tap \"Done\" without doing the task, and nobody will stop you. " +
-                        "But real results only come from actually doing each task, so follow the plan and give it your best. " +
-                        "Listen to your body: if something hurts or you feel unwell, stop and rest. " +
-                        "If you have any health concerns, talk to a doctor before you begin.\n\n" +
-                        "It's your choice: the shortcut or the real thing. Good luck on your journey!")
-                .setPositiveButton("OK", null)
-                .show();
+        AboutDialog.show(this);
     }
 
     private void setupNavigation() {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.runovav6.DateUtilsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-28T08:12:38.991Z" hostname="Lokis-MacBook-Air.local" time="0.05">
+  <properties/>
+  <testcase name="testDateCalculations" classname="com.runovav6.DateUtilsTest" time="0.008"/>
+  <testcase name="testConcurrentDateAccessDoesNotCorrupt" classname="com.runovav6.DateUtilsTest" time="0.034"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
