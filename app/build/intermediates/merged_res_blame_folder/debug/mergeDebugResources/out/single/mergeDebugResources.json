@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/ic_launcher_foreground.xml"
-    },
-    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_dumbbell.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/dumbbell.xml"
+    },
+    {
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/ic_launcher_foreground.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_ic_chevron_left.xml.flat",
@@ -76,10 +76,6 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/ic_check_circle.xml"
     },
     {
-        "merged": "com.runova.app-debug-35:/layout_activity_analytics.xml.flat",
-        "source": "com.runova.app-main-37:/layout/activity_analytics.xml"
-    },
-    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/mipmap-mdpi/ic_launcher.webp"
     },
@@ -100,6 +96,10 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/ic_chevron_right.xml"
     },
     {
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/layout_item_exercise_card.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/layout/item_exercise_card.xml"
+    },
+    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/layout_activity_target.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/layout/activity_target.xml"
     },
@@ -116,8 +116,8 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.runova.app-debug-35:/layout_activity_target.xml.flat",
-        "source": "com.runova.app-main-37:/layout/activity_target.xml"
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/layout_activity_training_content.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/layout/activity_training_content.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_meditation.xml.flat",
@@ -140,12 +140,12 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/layout/activity_home.xml"
     },
     {
-        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_settingsb.xml.flat",
-        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/settingsb.xml"
+        "merged": "com.runova.app-debug-35:/layout_activity_training_content.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_training_content.xml"
     },
     {
-        "merged": "com.runova.app-debug-35:/drawable_notification.xml.flat",
-        "source": "com.runova.app-main-37:/drawable/notification.xml"
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_settingsb.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/settingsb.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_eat.xml.flat",
@@ -164,8 +164,8 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.runova.app-debug-35:/layout_activity_home.xml.flat",
-        "source": "com.runova.app-main-37:/layout/activity_home.xml"
+        "merged": "com.runova.app-debug-35:/layout_item_exercise_card.xml.flat",
+        "source": "com.runova.app-main-37:/layout/item_exercise_card.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/mipmap-xhdpi_ic_launcher_round.webp.flat",
@@ -220,6 +220,14 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_notification.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/notification.xml"
+    },
+    {
+        "merged": "com.runova.app-debug-35:/layout_activity_timer.xml.flat",
+        "source": "com.runova.app-main-37:/layout/activity_timer.xml"
+    },
+    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
@@ -242,10 +250,6 @@
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/mipmap-hdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.runova.app-debug-35:/layout_activity_profile.xml.flat",
-        "source": "com.runova.app-main-37:/layout/activity_profile.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_bg_chip.xml.flat",

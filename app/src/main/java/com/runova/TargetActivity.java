@@ -1,6 +1,5 @@
 package com.runova;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.runova.controllers.TaskGenerator;
-import com.runova.controllers.TimerController;
 import com.runova.database.DBHelper;
 import com.runova.helpers.DateUtils;
 import com.runova.helpers.WindowHelper;
@@ -31,12 +28,10 @@ import java.util.List;
 public class TargetActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private TaskGenerator taskGenerator;
-    private TimerController timerController;
     private RecyclerView rvPendingTasks, rvCompletedTasks, rvMissedTasks;
     private TextView tvLevelChip, tvTargetsSummary, tvPendingEmpty, tvCompletedEmpty, tvMissedEmpty;
     private TextView badgePendingCount, badgeCompletedCount, badgeMissedCount;
     private ImageView arrowPending, arrowCompleted, arrowMissed;
-    private Integer activeTaskId;
     private boolean pendingExpanded = true;
     private boolean completedExpanded = false;
     private boolean missedExpanded = false;
@@ -51,7 +46,6 @@ public class TargetActivity extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
         taskGenerator = new TaskGenerator(dbHelper);
-        timerController = new TimerController(dbHelper);
 
         rvPendingTasks = findViewById(R.id.rvPendingTasks);
         rvCompletedTasks = findViewById(R.id.rvCompletedTasks);
@@ -91,13 +85,7 @@ public class TargetActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        checkActiveTimer();
         setupTasks();
-    }
-
-    private void checkActiveTimer() {
-        TimerController.ActiveState state = timerController.readState();
-        activeTaskId = state != null ? state.taskId : null;
     }
 
     private void setupTasks() {
@@ -113,9 +101,9 @@ public class TargetActivity extends AppCompatActivity {
 
         List<Task> missed = loadMissed();
 
-        rvPendingTasks.setAdapter(new TaskControlAdapter(pending, activeTaskId));
-        rvCompletedTasks.setAdapter(new TaskControlAdapter(completed, activeTaskId));
-        rvMissedTasks.setAdapter(new TaskControlAdapter(missed, activeTaskId));
+        rvPendingTasks.setAdapter(new TaskControlAdapter(pending));
+        rvCompletedTasks.setAdapter(new TaskControlAdapter(completed));
+        rvMissedTasks.setAdapter(new TaskControlAdapter(missed));
 
         badgePendingCount.setText(String.valueOf(pending.size()));
         badgeCompletedCount.setText(String.valueOf(completed.size()));
@@ -188,11 +176,9 @@ public class TargetActivity extends AppCompatActivity {
 
     class TaskControlAdapter extends RecyclerView.Adapter<TaskControlAdapter.ViewHolder> {
         private List<Task> tasks;
-        private Integer activeId;
 
-        TaskControlAdapter(List<Task> tasks, Integer activeId) {
+        TaskControlAdapter(List<Task> tasks) {
             this.tasks = tasks;
-            this.activeId = activeId;
         }
 
         @NonNull
@@ -230,6 +216,7 @@ public class TargetActivity extends AppCompatActivity {
 
             void bind(Task task) {
                 currentTask = task;
+                itemView.setOnClickListener(v -> openContent());
                 tvTaskName.setText(task.name);
                 tvTaskDuration.setText(task.minutes + " minutes");
 
@@ -240,46 +227,24 @@ public class TargetActivity extends AppCompatActivity {
                         : missed ? R.drawable.bg_status_missed
                         : R.drawable.bg_status_pending);
 
+                btnComplete.setVisibility(View.GONE);
                 if (finished || missed) {
                     btnStart.setVisibility(View.GONE);
-                    btnComplete.setVisibility(View.GONE);
-                } else if (activeId != null && !activeId.equals(task.id)) {
-                    btnStart.setEnabled(false);
-                    btnStart.setText("WAIT");
-                    btnComplete.setVisibility(View.GONE);
                 } else {
-                    boolean isActive = activeId != null && activeId.equals(task.id);
+                    btnStart.setVisibility(View.VISIBLE);
                     btnStart.setEnabled(true);
-                    btnStart.setText(isActive ? "RESUME" : "START");
-                    btnStart.setOnClickListener(v -> openTimer());
-                    btnComplete.setVisibility(isActive ? View.VISIBLE : View.GONE);
-                    btnComplete.setOnClickListener(v -> completeTask());
+                    btnStart.setText("START");
+                    btnStart.setOnClickListener(v -> openContent());
                 }
             }
 
-            void openTimer() {
-                Intent intent = new Intent(TargetActivity.this, TimerActivity.class);
+            void openContent() {
+                Intent intent = new Intent(TargetActivity.this, TrainingContentActivity.class);
                 intent.putExtra("TASK_ID", currentTask.id);
                 intent.putExtra("TASK_NAME", currentTask.name);
+                intent.putExtra("TASK_TYPE", currentTask.type);
                 intent.putExtra("DURATION_MINUTES", currentTask.minutes);
                 startActivity(intent);
-            }
-
-            void completeTask() {
-                timerController.clearTimer();
-                activeId = null;
-                activeTaskId = null;
-
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put(DBHelper.TASK_STATUS, "Finished");
-                db.update(DBHelper.TABLE_TASKS, values, DBHelper.TASK_ID + " = ?",
-                    new String[]{String.valueOf(currentTask.id)});
-
-                currentTask.status = "Finished";
-
-                Toast.makeText(TargetActivity.this, "Target completed!", Toast.LENGTH_SHORT).show();
-                setupTasks();
             }
         }
     }

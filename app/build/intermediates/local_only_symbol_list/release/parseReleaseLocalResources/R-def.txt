@@ -62,10 +62,10 @@ drawable ic_chevron_right
 drawable ic_history
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-drawable ic_notification_alarm
 drawable jogging
 drawable logo
 drawable navbg
+drawable notification
 drawable profileb
 drawable settingsb
 drawable targetb
@@ -81,13 +81,12 @@ id btnBack
 id btnCancelEdit
 id btnComplete
 id btnDatePicker
-id btnDone
 id btnEditProfile
+id btnExerciseStart
 id btnFinish
 id btnNext
 id btnNotifications
 id btnPrimary
-id btnReset
 id btnSave
 id btnStart
 id btnViewAll
@@ -97,6 +96,7 @@ id etFirstName
 id etHeight
 id etLastName
 id etWeight
+id exerciseContainer
 id headerCompleted
 id headerMissed
 id headerPending
@@ -133,8 +133,13 @@ id tvCompletedEmpty
 id tvDate
 id tvDurationLabel
 id tvEmpty
+id tvExerciseDescription
+id tvExerciseDuration
+id tvExerciseName
+id tvExerciseStatus
 id tvFinishedCount
 id tvGreeting
+id tvInstruction
 id tvLevelChip
 id tvLevelProgress
 id tvLoadingMessage
@@ -145,6 +150,8 @@ id tvPendingCount
 id tvPendingEmpty
 id tvPleaseWait
 id tvProfileName
+id tvScreenSubtitle
+id tvScreenTitle
 id tvStatAge
 id tvStatGender
 id tvStatHeight
@@ -169,6 +176,8 @@ layout activity_settings
 layout activity_signup
 layout activity_target
 layout activity_timer
+layout activity_training_content
+layout item_exercise_card
 layout item_notification
 layout item_task_card
 layout item_task_control

@@ -3253,13 +3253,12 @@ id btnBack
 id btnCancelEdit
 id btnComplete
 id btnDatePicker
-id btnDone
 id btnEditProfile
+id btnExerciseStart
 id btnFinish
 id btnNext
 id btnNotifications
 id btnPrimary
-id btnReset
 id btnSave
 id btnStart
 id btnViewAll
@@ -3350,6 +3349,7 @@ id etFirstName
 id etHeight
 id etLastName
 id etWeight
+id exerciseContainer
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -3680,8 +3680,13 @@ id tvCompletedEmpty
 id tvDate
 id tvDurationLabel
 id tvEmpty
+id tvExerciseDescription
+id tvExerciseDuration
+id tvExerciseName
+id tvExerciseStatus
 id tvFinishedCount
 id tvGreeting
+id tvInstruction
 id tvLevelChip
 id tvLevelProgress
 id tvLoadingMessage
@@ -3692,6 +3697,8 @@ id tvPendingCount
 id tvPendingEmpty
 id tvPleaseWait
 id tvProfileName
+id tvScreenSubtitle
+id tvScreenTitle
 id tvStatAge
 id tvStatGender
 id tvStatHeight
@@ -3853,6 +3860,7 @@ layout activity_settings
 layout activity_signup
 layout activity_target
 layout activity_timer
+layout activity_training_content
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3871,6 +3879,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_exercise_card
 layout item_notification
 layout item_task_card
 layout item_task_control

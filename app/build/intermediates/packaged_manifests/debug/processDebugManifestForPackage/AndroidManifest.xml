@@ -25,7 +25,6 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.RUNOVA" >
         <activity
             android:name="com.runova.SignupActivity"
@@ -62,6 +61,9 @@
             android:exported="false" />
         <activity
             android:name="com.runova.TimerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.runova.TrainingContentActivity"
             android:exported="false" />
 
         <provider

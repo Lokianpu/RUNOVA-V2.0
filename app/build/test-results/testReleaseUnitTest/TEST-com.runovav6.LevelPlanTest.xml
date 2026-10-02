@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.runovav6.LevelPlanTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-02T03:19:28.440Z" hostname="Lokis-MacBook-Air.local" time="0.004">
+<testsuite name="com.runovav6.LevelPlanTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-02T04:59:57.927Z" hostname="Lokis-MacBook-Air.local" time="0.007">
   <properties/>
   <testcase name="unparsableDateFallsBackToMonday" classname="com.runovav6.LevelPlanTest" time="0.0"/>
-  <testcase name="trainingDaysStartWithWarmupAndEndWithCooldown" classname="com.runovav6.LevelPlanTest" time="0.001"/>
+  <testcase name="trainingDaysStartWithWarmupAndEndWithCooldown" classname="com.runovav6.LevelPlanTest" time="0.002"/>
   <testcase name="unknownLevelFallsBackToBeginner" classname="com.runovav6.LevelPlanTest" time="0.0"/>
   <testcase name="everyTaskHasANameAPositiveDurationAndAnAllowedType" classname="com.runovav6.LevelPlanTest" time="0.001"/>
-  <testcase name="dailyTotalNeverExceedsTheLevelCap" classname="com.runovav6.LevelPlanTest" time="0.0"/>
-  <testcase name="planIsDeterministicAndLevelsDiffer" classname="com.runovav6.LevelPlanTest" time="0.001"/>
+  <testcase name="dailyTotalNeverExceedsTheLevelCap" classname="com.runovav6.LevelPlanTest" time="0.001"/>
+  <testcase name="planIsDeterministicAndLevelsDiffer" classname="com.runovav6.LevelPlanTest" time="0.0"/>
   <testcase name="everyLevelHasATwoTaskRecoveryDayOnSunday" classname="com.runovav6.LevelPlanTest" time="0.0"/>
   <testcase name="trainingDaysMatchTheApprovedTaskCounts" classname="com.runovav6.LevelPlanTest" time="0.0"/>
   <testcase name="everyCalendarDayMapsToTheExpectedTemplateSize" classname="com.runovav6.LevelPlanTest" time="0.0"/>

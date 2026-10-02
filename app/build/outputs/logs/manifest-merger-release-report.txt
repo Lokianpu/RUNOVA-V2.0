@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:1-51:12
-INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:1-51:12
-INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:1-51:12
-INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:1-51:12
+ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:1-54:12
+INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:1-54:12
+INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:1-54:12
+INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:1-54:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/loki/.gradle/caches/9.5.0/transforms/f0d42e28c26864b62ec97c5cc9894198/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/loki/.gradle/caches/9.5.0/transforms/cab32ec5bf47cdb8258dc1289158fca8/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/loki/.gradle/caches/9.5.0/transforms/84dc4deb9f3dfed1f23e6660978b22be/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
@@ -61,8 +61,8 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/loki/.gradle/caches/9
 	xmlns:android
 		ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:5:5-49:19
-INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:5:5-49:19
+ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:5:5-52:19
+INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:5:5-52:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/loki/.gradle/caches/9.5.0/transforms/f0d42e28c26864b62ec97c5cc9894198/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/loki/.gradle/caches/9.5.0/transforms/f0d42e28c26864b62ec97c5cc9894198/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/loki/.gradle/caches/9.5.0/transforms/cab32ec5bf47cdb8258dc1289158fca8/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -169,6 +169,12 @@ ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:46:9-48:40
 		ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:48:13-37
 	android:name
 		ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:47:13-52
+activity#com.runova.TrainingContentActivity
+ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:49:9-51:40
+	android:exported
+		ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:51:13-37
+	android:name
+		ADDED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:50:13-62
 uses-sdk
 INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml

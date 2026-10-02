@@ -1,30 +1,32 @@
 package com.runova;
 
-import android.app.AlertDialog;
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.runova.controllers.TimerController;
-import com.runova.database.DBHelper;
 import com.runova.helpers.WindowHelper;
 
 import java.util.Locale;
 
 public class TimerActivity extends AppCompatActivity {
-    private DBHelper dbHelper;
-    private TimerController timerController;
+    public static final String EXTRA_NAME = "TASK_NAME";
+    public static final String EXTRA_SECONDS = "DURATION_SECONDS";
+    public static final String EXTRA_COMPLETED = "TIMER_COMPLETED";
+
     private TextView tvTimerDisplay, tvTimerState;
     private Button btnPrimary;
-    private int taskId, minutes;
+    private int totalSeconds;
+    private long remainingMs;
+    private CountDownTimer timer;
     private boolean running;
     private boolean ready = true;
+    private boolean completed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,76 +34,97 @@ public class TimerActivity extends AppCompatActivity {
         WindowHelper.applyEdgeToEdge(this);
         setContentView(R.layout.activity_timer);
 
-        taskId = getIntent().getIntExtra("TASK_ID", -1);
-        String taskName = getIntent().getStringExtra("TASK_NAME");
-        minutes = getIntent().getIntExtra("DURATION_MINUTES", 0);
-        if (taskId == -1 || minutes <= 0) {
+        String name = getIntent().getStringExtra(EXTRA_NAME);
+        totalSeconds = getIntent().getIntExtra(EXTRA_SECONDS, 0);
+        if (name == null || totalSeconds <= 0) {
             finish();
             return;
         }
-
-        dbHelper = new DBHelper(this);
-        timerController = new TimerController(dbHelper);
-        timerController.stopTimer();
 
         TextView tvTaskName = findViewById(R.id.tvTaskName);
         TextView tvDurationLabel = findViewById(R.id.tvDurationLabel);
         tvTimerDisplay = findViewById(R.id.tvTimerDisplay);
         tvTimerState = findViewById(R.id.tvTimerState);
         btnPrimary = findViewById(R.id.btnPrimary);
-        Button btnReset = findViewById(R.id.btnReset);
-        Button btnDone = findViewById(R.id.btnDone);
         findViewById(R.id.btnBack).setOnClickListener(v -> goBack());
 
-        tvTaskName.setText(taskName);
-        tvDurationLabel.setText("Duration: " + minutes + " minutes");
+        tvTaskName.setText(name);
+        tvDurationLabel.setText("Duration: " + totalSeconds + " seconds");
+        remainingMs = totalSeconds * 1000L;
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
         btnPrimary.setOnClickListener(v -> onPrimary());
-        btnReset.setOnClickListener(v -> confirmReset());
-        btnDone.setOnClickListener(v -> confirmDone());
-
-        restoreState();
-    }
-
-    private void restoreState() {
-        TimerController.ActiveState state = timerController.readState();
-
-        if (state != null && state.taskId != taskId) {
-            Toast.makeText(this, "Finish current task first", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
-        if (state == null) {
-            showReady();
-        } else if (state.paused) {
-            showPaused(state.remainingMs);
-        } else {
-            timerController.resumeTimer(callback());
-            showRunning();
-            setDisplay(state.remainingMs);
-        }
+        showReady();
     }
 
     private void onPrimary() {
+        if (completed) {
+            return;
+        }
         if (ready) {
-            startTimer();
+            startCountdown();
         } else if (running) {
-            timerController.pauseTimer();
-            TimerController.ActiveState state = timerController.readState();
-            showPaused(state != null ? state.remainingMs : 0);
+            pauseCountdown();
         } else {
-            timerController.resumeTimer(callback());
-            showRunning();
+            resumeCountdown();
         }
     }
 
+    private void startCountdown() {
+        remainingMs = totalSeconds * 1000L;
+        startTimer();
+        setRunningState("Running", "PAUSE", R.color.status_missed_icon);
+    }
+
+    private void pauseCountdown() {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        running = false;
+        ready = false;
+        btnPrimary.setText("RESUME");
+        btnPrimary.setBackgroundTintList(getResources().getColorStateList(R.color.status_success, null));
+        tvTimerState.setText("Paused");
+    }
+
+    private void resumeCountdown() {
+        startTimer();
+        setRunningState("Running", "PAUSE", R.color.status_missed_icon);
+    }
+
     private void startTimer() {
-        timerController.startTimer(taskId, minutes, callback());
-        showRunning();
-        setDisplay(minutes * 60 * 1000L);
+        running = true;
+        ready = false;
+        timer = new CountDownTimer(remainingMs, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                remainingMs = millisUntilFinished;
+                setDisplay(millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                timer = null;
+                running = false;
+                completed = true;
+                remainingMs = 0;
+                setDisplay(0);
+                tvTimerState.setText("Completed");
+                btnPrimary.setText("DONE");
+                btnPrimary.setEnabled(false);
+                setResult(Activity.RESULT_OK,
+                    new Intent().putExtra(EXTRA_COMPLETED, true));
+            }
+        }.start();
+    }
+
+    private void setRunningState(String state, String buttonText, int colorRes) {
+        running = true;
+        ready = false;
+        tvTimerState.setText(state);
+        btnPrimary.setText(buttonText);
+        btnPrimary.setBackgroundTintList(getResources().getColorStateList(colorRes, null));
     }
 
     private void showReady() {
@@ -110,88 +133,21 @@ public class TimerActivity extends AppCompatActivity {
         btnPrimary.setText("START");
         btnPrimary.setBackgroundTintList(getResources().getColorStateList(R.color.button_primary, null));
         tvTimerState.setText("Ready to start");
-        setDisplay(minutes * 60 * 1000L);
-    }
-
-    private void showRunning() {
-        ready = false;
-        running = true;
-        btnPrimary.setText("PAUSE");
-        btnPrimary.setBackgroundTintList(getResources().getColorStateList(R.color.status_missed_icon, null));
-        tvTimerState.setText("Running");
-    }
-
-    private void showPaused(long remaining) {
-        ready = false;
-        running = false;
-        btnPrimary.setText("RESUME");
-        btnPrimary.setBackgroundTintList(getResources().getColorStateList(R.color.status_success, null));
-        tvTimerState.setText("Paused");
-        setDisplay(remaining);
-    }
-
-    private void confirmReset() {
-        new AlertDialog.Builder(this)
-            .setTitle("Reset timer")
-            .setMessage("The timer will start again from the beginning.")
-            .setPositiveButton("RESET", (dialog, which) -> {
-                timerController.clearTimer();
-                showReady();
-            })
-            .setNegativeButton("CANCEL", null)
-            .show();
+        setDisplay(totalSeconds * 1000L);
     }
 
     private void setDisplay(long millis) {
-        int totalSeconds = (int) (millis / 1000);
-        int minutesPart = totalSeconds / 60;
-        int secondsPart = totalSeconds % 60;
-        tvTimerDisplay.setText(String.format(Locale.US, "%02d:%02d", minutesPart, secondsPart));
-    }
-
-    private TimerController.TimerCallback callback() {
-        return new TimerController.TimerCallback() {
-            @Override
-            public void onTick(long millisRemaining) {
-                setDisplay(millisRemaining);
-            }
-
-            @Override
-            public void onFinish() {
-                setDisplay(0);
-                completeTask(true);
-            }
-        };
-    }
-
-    private void confirmDone() {
-        new AlertDialog.Builder(this)
-            .setTitle("Complete task")
-            .setMessage("Are you sure you want to mark this activity as complete?")
-            .setPositiveButton("COMPLETE", (dialog, which) -> completeTask(false))
-            .setNegativeButton("CANCEL", null)
-            .show();
-    }
-
-    private void completeTask(boolean finishedByTimer) {
-        timerController.clearTimer();
-
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DBHelper.TASK_STATUS, "Finished");
-        db.update(DBHelper.TABLE_TASKS, values, DBHelper.TASK_ID + " = ?",
-            new String[]{String.valueOf(taskId)});
-
-        if (!finishedByTimer) {
-            Toast.makeText(this, "Task completed!", Toast.LENGTH_SHORT).show();
-        }
-        finish();
+        int totalSec = (int) (millis / 1000);
+        tvTimerDisplay.setText(String.format(Locale.US, "%02d:%02d", totalSec / 60, totalSec % 60));
     }
 
     private void goBack() {
-        TimerController.ActiveState state = timerController.readState();
-        if (state != null && !state.paused) {
-            timerController.pauseTimer();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        if (!completed) {
+            setResult(Activity.RESULT_CANCELED);
         }
         finish();
     }
@@ -204,8 +160,9 @@ public class TimerActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (timerController != null) {
-            timerController.stopTimer();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
         }
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }

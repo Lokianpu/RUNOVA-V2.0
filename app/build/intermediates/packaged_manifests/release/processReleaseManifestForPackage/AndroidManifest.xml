@@ -61,6 +61,9 @@
         <activity
             android:name="com.runova.TimerActivity"
             android:exported="false" />
+        <activity
+            android:name="com.runova.TrainingContentActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

@@ -20,12 +20,20 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/mipmap-anydpi/ic_launcher.xml"
     },
     {
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/layout_item_exercise_card.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/layout/item_exercise_card.xml"
+    },
+    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_eat.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/eat.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/layout_item_notification.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/layout/item_notification.xml"
+    },
+    {
+        "merged": "com.runova.app-release-35:/layout_activity_timer.xml.flat",
+        "source": "com.runova.app-main-36:/layout/activity_timer.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_ic_notification_alarm.xml.flat",
@@ -52,10 +60,6 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/profileb.xml"
     },
     {
-        "merged": "com.runova.app-release-35:/layout_activity_questionnaire.xml.flat",
-        "source": "com.runova.app-main-36:/layout/activity_questionnaire.xml"
-    },
-    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_bg_count_badge.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/bg_count_badge.xml"
     },
@@ -78,6 +82,10 @@
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_ic_arrow_down.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/ic_arrow_down.xml"
+    },
+    {
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/layout_activity_training_content.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/layout/activity_training_content.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/mipmap-xhdpi_ic_launcher.webp.flat",
@@ -116,6 +124,10 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.runova.app-release-35:/layout_item_exercise_card.xml.flat",
+        "source": "com.runova.app-main-36:/layout/item_exercise_card.xml"
+    },
+    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/layout_activity_settings.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/layout/activity_settings.xml"
     },
@@ -140,12 +152,16 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/bg_level_card_selected_v1.xml"
     },
     {
-        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_targetb.xml.flat",
-        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/targetb.xml"
+        "merged": "com.runova.app-release-35:/layout_activity_training_content.xml.flat",
+        "source": "com.runova.app-main-36:/layout/activity_training_content.xml"
     },
     {
-        "merged": "com.runova.app-release-35:/layout_activity_signup.xml.flat",
-        "source": "com.runova.app-main-36:/layout/activity_signup.xml"
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_notification.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/notification.xml"
+    },
+    {
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_targetb.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/targetb.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/mipmap-xhdpi_ic_launcher_round.webp.flat",
