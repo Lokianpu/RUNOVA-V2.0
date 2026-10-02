@@ -39,151 +39,152 @@
 26-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:11:9-54
 27        android:supportsRtl="true"
 27-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:12:9-35
-28        android:theme="@style/Theme.RUNOVA" >
-28-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:13:9-44
-29        <activity
-29-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:14:9-21:20
-30            android:name="com.runova.SignupActivity"
-30-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:15:13-53
-31            android:exported="true" >
-31-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:16:13-36
-32            <intent-filter>
-32-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:17:13-20:29
-33                <action android:name="android.intent.action.MAIN" />
-33-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:18:17-69
-33-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:18:25-66
-34
-35                <category android:name="android.intent.category.LAUNCHER" />
-35-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:19:17-77
-35-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:19:27-74
-36            </intent-filter>
-37        </activity>
-38        <activity
-38-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:22:9-24:40
-39            android:name="com.runova.QuestionnaireActivity"
-39-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:23:13-60
-40            android:exported="false" />
-40-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:24:13-37
-41        <activity
-41-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:25:9-27:40
-42            android:name="com.runova.HomeActivity"
-42-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:26:13-51
-43            android:exported="false" />
-43-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:27:13-37
-44        <activity
-44-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:28:9-30:40
-45            android:name="com.runova.TargetActivity"
-45-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:29:13-53
-46            android:exported="false" />
-46-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:30:13-37
-47        <activity
-47-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:31:9-33:40
-48            android:name="com.runova.AnalyticsActivity"
-48-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:32:13-56
-49            android:exported="false" />
-49-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:33:13-37
-50        <activity
-50-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:34:9-36:40
-51            android:name="com.runova.ProfileActivity"
-51-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:35:13-54
-52            android:exported="false" />
-52-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:36:13-37
-53        <activity
-53-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:37:9-39:40
-54            android:name="com.runova.NotificationsActivity"
-54-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:38:13-60
-55            android:exported="false" />
-55-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:39:13-37
-56        <activity
-56-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:40:9-42:40
-57            android:name="com.runova.SettingsActivity"
-57-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:41:13-55
-58            android:exported="false" />
-58-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:42:13-37
-59        <activity
-59-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:43:9-45:40
-60            android:name="com.runova.LoadingActivity"
-60-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:44:13-54
-61            android:exported="false" />
-61-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:45:13-37
-62        <activity
-62-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:46:9-48:40
-63            android:name="com.runova.TimerActivity"
-63-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:47:13-52
-64            android:exported="false" />
-64-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:48:13-37
-65        <activity
-65-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:49:9-51:40
-66            android:name="com.runova.TrainingContentActivity"
-66-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:50:13-62
-67            android:exported="false" />
-67-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:51:13-37
-68
-69        <provider
-69-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-70            android:name="androidx.startup.InitializationProvider"
-70-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
-71            android:authorities="com.runova.androidx-startup"
-71-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
-72            android:exported="false" >
-72-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
-73            <meta-data
-73-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-74                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-74-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
-75                android:value="androidx.startup" />
-75-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
-76            <meta-data
-76-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/loki/.gradle/caches/9.5.0/transforms/8a7d76f1e90dc0fc2608bf4a2490dc81/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
-77                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-77-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/loki/.gradle/caches/9.5.0/transforms/8a7d76f1e90dc0fc2608bf4a2490dc81/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
-78                android:value="androidx.startup" />
-78-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/loki/.gradle/caches/9.5.0/transforms/8a7d76f1e90dc0fc2608bf4a2490dc81/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
-79            <meta-data
-79-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-80                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-80-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-81                android:value="androidx.startup" />
-81-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-82        </provider>
-83
-84        <receiver
-84-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-85            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-85-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-86            android:directBootAware="false"
-86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-87            android:enabled="true"
-87-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-88            android:exported="true"
-88-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-89            android:permission="android.permission.DUMP" >
-89-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-90            <intent-filter>
-90-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-91                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-91-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-91-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-92            </intent-filter>
-93            <intent-filter>
-93-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-94                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-95            </intent-filter>
-96            <intent-filter>
-96-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-97                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-97-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-97-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-98            </intent-filter>
-99            <intent-filter>
-99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-100                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-101            </intent-filter>
-102        </receiver>
-103    </application>
-104
-105</manifest>
+28        android:testOnly="true"
+29        android:theme="@style/Theme.RUNOVA" >
+29-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:13:9-44
+30        <activity
+30-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:14:9-21:20
+31            android:name="com.runova.SignupActivity"
+31-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:15:13-53
+32            android:exported="true" >
+32-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:16:13-36
+33            <intent-filter>
+33-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:17:13-20:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:18:17-69
+34-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:18:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:19:17-77
+36-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:19:27-74
+37            </intent-filter>
+38        </activity>
+39        <activity
+39-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:22:9-24:40
+40            android:name="com.runova.QuestionnaireActivity"
+40-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:23:13-60
+41            android:exported="false" />
+41-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:24:13-37
+42        <activity
+42-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:25:9-27:40
+43            android:name="com.runova.HomeActivity"
+43-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:26:13-51
+44            android:exported="false" />
+44-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:27:13-37
+45        <activity
+45-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:28:9-30:40
+46            android:name="com.runova.TargetActivity"
+46-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:29:13-53
+47            android:exported="false" />
+47-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:30:13-37
+48        <activity
+48-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:31:9-33:40
+49            android:name="com.runova.AnalyticsActivity"
+49-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:32:13-56
+50            android:exported="false" />
+50-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:33:13-37
+51        <activity
+51-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:34:9-36:40
+52            android:name="com.runova.ProfileActivity"
+52-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:35:13-54
+53            android:exported="false" />
+53-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:36:13-37
+54        <activity
+54-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:37:9-39:40
+55            android:name="com.runova.NotificationsActivity"
+55-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:38:13-60
+56            android:exported="false" />
+56-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:39:13-37
+57        <activity
+57-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:40:9-42:40
+58            android:name="com.runova.SettingsActivity"
+58-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:41:13-55
+59            android:exported="false" />
+59-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:42:13-37
+60        <activity
+60-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:43:9-45:40
+61            android:name="com.runova.LoadingActivity"
+61-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:44:13-54
+62            android:exported="false" />
+62-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:45:13-37
+63        <activity
+63-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:46:9-48:40
+64            android:name="com.runova.TimerActivity"
+64-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:47:13-52
+65            android:exported="false" />
+65-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:48:13-37
+66        <activity
+66-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:49:9-51:40
+67            android:name="com.runova.TrainingContentActivity"
+67-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:50:13-62
+68            android:exported="false" />
+68-->/Users/loki/RUNOVAV62/app/src/main/AndroidManifest.xml:51:13-37
+69
+70        <provider
+70-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+71            android:name="androidx.startup.InitializationProvider"
+71-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+72            android:authorities="com.runova.androidx-startup"
+72-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+73            android:exported="false" >
+73-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+74            <meta-data
+74-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+75                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+75-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+76                android:value="androidx.startup" />
+76-->[androidx.emoji2:emoji2:1.2.0] /Users/loki/.gradle/caches/9.5.0/transforms/22f0a6874aa9c7ad7686d0448ff5d2f1/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+77            <meta-data
+77-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/loki/.gradle/caches/9.5.0/transforms/8a7d76f1e90dc0fc2608bf4a2490dc81/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+78                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+78-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/loki/.gradle/caches/9.5.0/transforms/8a7d76f1e90dc0fc2608bf4a2490dc81/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+79                android:value="androidx.startup" />
+79-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/loki/.gradle/caches/9.5.0/transforms/8a7d76f1e90dc0fc2608bf4a2490dc81/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+80            <meta-data
+80-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+81                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+82                android:value="androidx.startup" />
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+83        </provider>
+84
+85        <receiver
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+86            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+87            android:directBootAware="false"
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+88            android:enabled="true"
+88-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+89            android:exported="true"
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+90            android:permission="android.permission.DUMP" >
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+91            <intent-filter>
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+92                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+93            </intent-filter>
+94            <intent-filter>
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+95                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+96            </intent-filter>
+97            <intent-filter>
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+98                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+99            </intent-filter>
+100            <intent-filter>
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+101                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/loki/.gradle/caches/9.5.0/transforms/fe80b217b7e4fac329930ea8ec8917ca/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+102            </intent-filter>
+103        </receiver>
+104    </application>
+105
+106</manifest>

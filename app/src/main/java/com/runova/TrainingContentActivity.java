@@ -62,7 +62,7 @@ public class TrainingContentActivity extends AppCompatActivity {
         TextView tvScreenSubtitle = findViewById(R.id.tvScreenSubtitle);
         TextView tvInstruction = findViewById(R.id.tvInstruction);
         tvScreenTitle.setText(taskName);
-        tvScreenSubtitle.setText("Duration: " + minutes + " minutes");
+        tvScreenSubtitle.setText(minutes + " minutes");
         tvInstruction.setText(TrainingContentLibrary.getInstruction(taskType, readEvent()));
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
@@ -163,7 +163,7 @@ public class TrainingContentActivity extends AppCompatActivity {
 
             tvName.setText(exercise.name);
             tvDescription.setText(exercise.description);
-            tvDuration.setText("Duration: " + seconds + " seconds");
+            tvDuration.setText(seconds + " seconds");
 
             final int cardSeconds = seconds;
             btnStart.setOnClickListener(v -> {

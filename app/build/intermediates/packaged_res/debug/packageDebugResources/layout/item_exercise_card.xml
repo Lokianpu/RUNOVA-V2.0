@@ -49,14 +49,15 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvExerciseDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Description"
-            android:textColor="@color/button_primary"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tvExerciseDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:alpha="0.7"
+                android:text="Description"
+                android:textColor="@color/button_primary"
+                android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,7 +74,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:alpha="0.7"
-                android:text="Duration: 30 seconds"
+                android:text="30 seconds"
                 android:textColor="@color/button_primary"
                 android:textSize="12sp" />
 
@@ -81,6 +82,7 @@
                 android:id="@+id/btnExerciseStart"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/surface_card_action"
                 android:text="START"
                 android:textAllCaps="false"

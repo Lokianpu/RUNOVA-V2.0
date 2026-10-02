@@ -26,30 +26,14 @@
                 android:orientation="horizontal"
                 android:paddingVertical="10dp">
 
-                <LinearLayout
+                <ImageButton
                     android:id="@+id/btnBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginEnd="6dp"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_chevron_left"
-                        android:tint="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="BACK"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
+                    android:contentDescription="Back"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_chevron_left" />
 
                 <TextView
                     android:id="@+id/tvScreenTitle"
@@ -57,7 +41,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
-                    android:gravity="end"
                     android:maxLines="1"
                     android:text="Warm-up"
                     android:textColor="@color/white"
@@ -71,28 +54,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:gravity="end"
-                android:text="Duration: 10 minutes"
+                android:text="10 minutes"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="@dimen/card_gap"
+                android:layout_marginBottom="@dimen/space_1"
                 app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="@dimen/card_radius"
                 app:cardElevation="@dimen/card_elevation">
 
-                <TextView
-                    android:id="@+id/tvInstruction"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/card_padding"
-                    android:text="Instructions"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="Instructions"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvInstruction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Instructions"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 

@@ -32,10 +32,6 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/layout/item_notification.xml"
     },
     {
-        "merged": "com.runova.app-release-35:/layout_activity_timer.xml.flat",
-        "source": "com.runova.app-main-36:/layout/activity_timer.xml"
-    },
-    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_ic_notification_alarm.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/ic_notification_alarm.xml"
     },
@@ -194,6 +190,10 @@
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_water.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/water.xml"
+    },
+    {
+        "merged": "com.runova.app-release-35:/layout_item_task_control.xml.flat",
+        "source": "com.runova.app-main-36:/layout/item_task_control.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/mipmap-mdpi_ic_launcher_round.webp.flat",

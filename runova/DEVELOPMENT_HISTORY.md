@@ -1043,7 +1043,63 @@ RUNOVA_Official_Documentation.docx (new, repo root)
 
 ---
 
-## Current State (2026-09-28 16:30 UTC)
+## Session 14: Training Content Screen & Generic Exercise Timer (2026-10-02)
+
+### Phase: Task Content Flow + Per-Exercise Timer + Progress Persistence
+
+**Duration:** ~2 hours
+
+**Objective:** Replace the whole-task timer flow with a training content screen: task row/START opens a content screen listing that task's exercises (name, description, duration, START), each exercise runs on a generic timer template (name + seconds), completing every exercise is the only signal that marks the task Finished, and exercise progress persists across navigation so finished cards never revert to Pending.
+
+**Changes Made:**
+
+#### 1. Exercise Model + Content Data
+- Created `models/Exercise.java` (`name`, `description`, `seconds`).
+- `training/TrainingContentLibrary.java`: append-only `getExercises(taskType)` for all 15 task types plus `getInstruction(type, event)`; existing 108 lines untouched.
+
+#### 2. Training Content Screen
+- Created `activity_training_content.xml` + `TrainingContentActivity.java`: back header, title/subtitle, instruction card, exercise card list. Card layout `item_exercise_card.xml` = name, description, "Duration: X seconds", Done status chip, START button.
+- Removed during review per developer: TASK TIMER button (whole-task timer concept dropped), inline card countdown (redundant with timer screen), COMPLETE button (task finishes only when all exercise timers end).
+
+#### 3. Generic Timer Template
+- `TimerActivity.java` rewritten: extras `TASK_NAME` + `DURATION_SECONDS` (no DB, no TimerController, no taskId). Local `CountDownTimer`; states Ready -> Running -> Paused -> Completed (00:00, primary shows DONE disabled); `btnReset`/`btnDone`/`COMPLETE` removed from `activity_timer.xml`. Result contract: `RESULT_OK` + `EXTRA_COMPLETED` on natural finish, `RESULT_CANCELED` on back-before-zero.
+- `controllers/TimerController.java` deleted (zero references after rework); dead DB columns `activeTaskId`/`activeTaskEndTime`/`activeTaskPaused` left in place (no migration per spec).
+
+#### 4. Navigation & Dead-Logic Removal
+- `TargetActivity`: START button and row click both open the content screen; whole active-task mechanism removed (`timerController`, `activeTaskId`, RESUME/WAIT/COMPLETE branches, `completeTask`); pending card = START only, finished/missed hide START, COMPLETE stays GONE.
+
+#### 5. Progress Persistence & Task Completion
+- `TrainingContentActivity`: `SharedPreferences` file `exercise_progress`, key `task_<taskId>` = CSV of finished card indices; saved on each exercise completion, loaded on inflate (chip Done + DONE disabled), cleared only when the task transitions to Finished. In-flight index held for the Activity Result API (`registerForActivityResult`), cancel result leaves card pending.
+- All cards done -> `UPDATE tasks SET status='Finished'` (logic moved from TargetActivity), toast, auto-back to Target where counts update. Finished task reopened -> all cards pre-marked Done.
+
+**Files Created/Modified:**
+```
+app/src/main/java/com/runova/models/Exercise.java (new)
+app/src/main/java/com/runova/TrainingContentActivity.java (new)
+app/src/main/java/com/runova/training/TrainingContentLibrary.java (modified)
+app/src/main/java/com/runova/TimerActivity.java (rewritten)
+app/src/main/java/com/runova/TargetActivity.java (modified)
+app/src/main/java/com/runova/controllers/TimerController.java (deleted)
+app/src/main/res/layout/activity_training_content.xml (new)
+app/src/main/res/layout/item_exercise_card.xml (new)
+app/src/main/res/layout/activity_timer.xml (modified)
+```
+
+**Why:** Developer decisions in plan review: task timer replaced by per-exercise timers (single reusable timer template); timer completion is the sole task-finish signal; no manual COMPLETE button; progress must persist (bug: finished cards reverted to Pending on re-entry).
+
+**Key Decisions:**
+- Progress store = SharedPreferences CSV (no new DB table; tasks table contract unchanged).
+- One generic timer Activity driven by name + seconds serves every exercise.
+- Completion delivered via Activity Result, not global state.
+- TimerController deleted only after grep proved zero references (DB columns untouched).
+
+**Verification:**
+- `./gradlew assembleDebug test` -> green (12 unit tests, 0 failures)
+- Device walk: Target START -> content (5 cards, no TASK TIMER/inline timer/COMPLETE) -> RUN/PAUSE/RESUME -> 00:00 Completed DONE-disabled -> back -> card Done chip; exit + re-enter content -> Done persisted; remaining 4 exercises run -> auto back to Target, `tasks.status='Finished'`, prefs key cleared, badges 2 pending / 1 completed, summary "1 of 3 completed"; reopened finished task -> all 5 cards Done; 0 FATAL. Shots: `/tmp/runova_shots/ui10..ui21`.
+
+---
+
+## Current State (2026-10-02 05:25 UTC)
 
 ### All Core Phases Complete ✅
 
@@ -1051,7 +1107,7 @@ RUNOVA_Official_Documentation.docx (new, repo root)
 - ✅ Full onboarding flow (Welcome → Signup → Questionnaire)
 - ✅ Task generation (lazy, deterministic, from static templates)
 - ✅ Home screen (greeting, date, tasks, level progress, bell icon)
-- ✅ Target screen (timer, single active timer, task completion)
+- ✅ Target screen (task content flow, per-exercise timers, task completion)
 - ✅ Analytics (level progress, streak, status counts, weekly chart)
 - ✅ Profile editing (validation, level change with confirmation)
 - ✅ Level cycle (28-day check, dialog, notifications inbox)
@@ -1068,9 +1124,12 @@ RUNOVA_Official_Documentation.docx (new, repo root)
 - ✅ Analytics Week/Month/Year charts with working week window + non-negative axis (Session 11, 2 bugs fixed)
 - ✅ No ripple/touch feedback anywhere (theme-level removal) (Session 11)
 - ✅ Adaptive layouts verified at 320dp phone / landscape / 800dp tablet (spacing-only scaling, grid span2) (Session 11)
-- ✅ Timer fully user-controlled: START/PAUSE(red)/RESUME(green) fixed in place, RESET with dialog, BACK TO TARGET (Session 11)
-- ✅ Full on-device verification of every screen (Session 11)
+- ✅ Training content screen per task: exercise cards with Done chips, progress persists across navigation (Session 14)
+- ✅ Generic timer: START/PAUSE/RESUME, 00:00 auto-complete, DONE disabled, back cancels (Session 14)
+- ✅ Task marked Finished only when all exercise timers complete (Session 14)
+- ✅ Full on-device verification of every screen (Session 11, Session 14)
 - ✅ First-launch welcome/disclaimer dialog before Sign Up, first-time users only (Session 13)
+- ✅ All 11 Activities functional
 - ✅ Official documentation exported to RUNOVA_Official_Documentation.docx, 14 sections (Session 13)
 - ✅ Level-up system reworked: shared dialog, congratulation wording, Pro branch with single Continue, polished notification labels (Session 13)
 - ✅ Notification rows: label only + tap-to-dialog, no inline buttons, all levels (Session 13)
@@ -1085,10 +1144,10 @@ RUNOVA_Official_Documentation.docx (new, repo root)
 **Target SDK:** 34 (Android 14)
 
 **Architecture Summary:**
-- **27 Java files total**
-- **10 Activities:** SignupActivity, QuestionnaireActivity, LoadingActivity, HomeActivity, TargetActivity, AnalyticsActivity, ProfileActivity, NotificationsActivity, SettingsActivity, TimerActivity
-- **3 Controllers:** TaskGenerator, TimerController, LevelCycleController
-- **5 Models:** Profile, Task, Notification, DayTemplate, TaskTemplate
+- **28 Java files total**
+- **11 Activities:** SignupActivity, QuestionnaireActivity, LoadingActivity, HomeActivity, TargetActivity, AnalyticsActivity, ProfileActivity, NotificationsActivity, SettingsActivity, TimerActivity, TrainingContentActivity
+- **2 Controllers:** TaskGenerator, LevelCycleController
+- **6 Models:** Profile, Task, Notification, DayTemplate, TaskTemplate, Exercise
 - **6 Helpers:** DateUtils, ValidationHelper, WindowHelper, StatsHelper, AboutDialog, LevelUpDialog
 - **2 Training classes:** LevelPlan, TrainingContentLibrary
 - **1 Database helper:** DBHelper
@@ -1339,9 +1398,9 @@ Any key decisions made?:
 ```
 
 
-*Last Updated: 2026-09-28 16:30 UTC*  
-*Total Development Time: ~35-40 hours across 8 phases*  
-*Sessions: 13 (Foundation + Welcome + Onboarding + Home + Target + Analytics + Profile + LevelCycle + Full-Screen Chrome + Fixes & Verification + Design Consistency / Responsive / Charts / Timer + Offline Audit / Concurrency / Timer Expiration + Welcome Dialog / Documentation / Level-Up Rework)*  
-*Total Files: 27 Java classes + layouts + resources*  
+*Last Updated: 2026-10-02 05:25 UTC*  
+*Total Development Time: ~37-42 hours across 8 phases*  
+*Sessions: 14 (Foundation + Welcome + Onboarding + Home + Target + Analytics + Profile + LevelCycle + Full-Screen Chrome + Fixes & Verification + Design Consistency / Responsive / Charts / Timer + Offline Audit / Concurrency / Timer Expiration + Welcome Dialog / Documentation / Level-Up Rework + Training Content / Generic Timer)*  
+*Total Files: 28 Java classes + layouts + resources*  
 *Unit Tests: 12 passing (LevelPlanTest 9, DateUtilsTest 2, ExampleUnitTest 1)*  
 *Build Status: SUCCESS ✅*

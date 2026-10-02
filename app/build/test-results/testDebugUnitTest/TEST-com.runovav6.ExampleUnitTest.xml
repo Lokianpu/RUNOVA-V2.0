@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.runovav6.ExampleUnitTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-02T04:59:57.936Z" hostname="Lokis-MacBook-Air.local" time="0.0">
+<testsuite name="com.runovav6.ExampleUnitTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-02T05:40:13.365Z" hostname="Lokis-MacBook-Air.local" time="0.006">
   <properties/>
-  <testcase name="addition_isCorrect" classname="com.runovav6.ExampleUnitTest" time="0.0"/>
+  <testcase name="addition_isCorrect" classname="com.runovav6.ExampleUnitTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
