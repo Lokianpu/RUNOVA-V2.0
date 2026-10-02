@@ -3695,7 +3695,6 @@ id tvScreenTitle
 id tvStatAge
 id tvStatGender
 id tvStatHeight
-id tvStatLevel
 id tvStatSessions
 id tvStatStreak
 id tvStatWeight

@@ -27,7 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText etFirstName, etLastName, etHeight, etWeight;
     private Spinner spinnerAge, spinnerGender, spinnerLevel;
     private TextView tvProfileName, tvViewLevel, tvStatHeight, tvStatWeight,
-            tvStatSessions, tvStatStreak, tvStatAge, tvStatGender, tvStatLevel;
+            tvStatSessions, tvStatStreak, tvStatAge, tvStatGender;
     private View profileViewBlock, profileEditBlock;
     private StatsHelper statsHelper;
     private String currentLevel;
@@ -54,7 +54,6 @@ public class ProfileActivity extends AppCompatActivity {
         tvStatStreak = findViewById(R.id.tvStatStreak);
         tvStatAge = findViewById(R.id.tvStatAge);
         tvStatGender = findViewById(R.id.tvStatGender);
-        tvStatLevel = findViewById(R.id.tvStatLevel);
 
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
@@ -144,7 +143,6 @@ public class ProfileActivity extends AppCompatActivity {
             tvStatWeight.setText(fmtNum(weight) + " kg");
             tvStatAge.setText(String.valueOf(age));
             tvStatGender.setText(gender == null ? "--" : gender);
-            tvStatLevel.setText(currentLevel == null ? "--" : currentLevel);
         }
         cursor.close();
 
