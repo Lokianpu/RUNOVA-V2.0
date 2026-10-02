@@ -7,7 +7,7 @@ public class TrainingContentLibrary {
         switch (taskType) {
             case "WARMUP":
                 return "Easy walk/jog, leg swings, arm circles, marching, dynamic mobility";
-            
+
             case "COOLDOWN":
                 return "Easy walk/jog, static stretching, breathing exercises";
             

@@ -62,10 +62,10 @@ drawable ic_chevron_right
 drawable ic_history
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-drawable ic_notification_alarm
 drawable jogging
 drawable logo
 drawable navbg
+drawable notification
 drawable profileb
 drawable settingsb
 drawable targetb

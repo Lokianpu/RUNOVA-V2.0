@@ -3060,7 +3060,6 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
-drawable ic_notification_alarm
 drawable ic_search_black_24
 drawable jogging
 drawable logo
@@ -3124,6 +3123,7 @@ drawable mtrl_switch_track_decoration
 drawable mtrl_tabs_default_indicator
 drawable navbg
 drawable navigation_empty_icon
+drawable notification
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low

@@ -124,7 +124,7 @@
                 android:text="NEXT"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:backgroundTint="@color/button_primary"
+                android:backgroundTint="@color/card_bg"
                 android:paddingHorizontal="@dimen/space_8"
                 android:paddingVertical="@dimen/space_4" />
 
