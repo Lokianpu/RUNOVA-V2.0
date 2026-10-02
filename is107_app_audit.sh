@@ -78,7 +78,8 @@ else
   echo "$FAIL Built in Java                                -> no .java files found"
 fi
 
-ACTIVITY_COUNT=$(grep -c '<activity' "$MANIFEST" 2>/dev/null || echo 0)
+ACTIVITY_COUNT=$(grep -c '<activity' "$MANIFEST" 2>/dev/null || true)
+ACTIVITY_COUNT=${ACTIVITY_COUNT:-0}
 TOTAL=$((TOTAL+1))
 if [ "$ACTIVITY_COUNT" -ge 5 ]; then
   FOUND=$((FOUND+1))
@@ -100,7 +101,7 @@ check "User interaction (click/input listeners)" \
   "-> no interaction handlers found"
 
 check "Styles / Themes applied" \
-  "$(find "$VALUES_DIR" -iname "styles.xml" -o -iname "themes.xml" 2>/dev/null | wc -l)" \
+  "$(find $VALUES_DIR -iname "styles.xml" -o -iname "themes.xml" 2>/dev/null | wc -l)" \
   "-> no styles.xml/themes.xml found"
 
 check "Responsive layout technique (ConstraintLayout / weights)" \
@@ -110,7 +111,8 @@ check "Responsive layout technique (ConstraintLayout / weights)" \
 echo ""
 echo "-- Offline-Only Constraint (critical -- app must need ZERO internet) --"
 
-INTERNET_PERM=$(grep -c 'android.permission.INTERNET' "$MANIFEST" 2>/dev/null || echo 0)
+INTERNET_PERM=$(grep -c 'android.permission.INTERNET' "$MANIFEST" 2>/dev/null || true)
+INTERNET_PERM=${INTERNET_PERM:-0}
 TOTAL=$((TOTAL+1))
 if [ "$INTERNET_PERM" -eq 0 ]; then
   FOUND=$((FOUND+1))
@@ -213,7 +215,7 @@ check "ViewModel usage (MVVM)" \
   "$(grep -rlE 'extends[[:space:]]+ViewModel' $SRC_FILES 2>/dev/null | wc -l)" \
   "-> none found (fine if project intentionally uses plain MVC)"
 
-MODEL_DIR=$(find "$ROOT" -type d -iname "model")
+MODEL_DIR=$(find "$ROOT" -type d -iname "model*")
 check "MVC-style package separation (model/)" \
   "$(echo "$MODEL_DIR" | grep -c . 2>/dev/null)" \
   "-> no dedicated model/ package found"
@@ -229,7 +231,7 @@ echo "############################################################"
 echo ""
 echo "-- Core Syntax & Control Flow --"
 check "Method declarations" \
-  "$(grep -rlE '(public|private|protected)[[:space:]]+[A-Za-z<>\[\]]+[[:space:]]+[A-Za-z_]+\(' $SRC_FILES 2>/dev/null | wc -l)" \
+  "$(grep -rlE '(public|private|protected)[[:space:]]+[]A-Za-z_<>\[]+[[:space:]]+[A-Za-z_]+\(' $SRC_FILES 2>/dev/null | wc -l)" \
   "-> no method signatures detected"
 
 check "Variables & primitive data types" \
@@ -237,7 +239,7 @@ check "Variables & primitive data types" \
   "-> no primitive/String variable usage found"
 
 check "Operators (arithmetic/logical/comparison)" \
-  "$(grep -rlE '[+\-*/%]=|==|!=|&&|\|\||<=|>=' $SRC_FILES 2>/dev/null | wc -l)" \
+  "$(grep -rlE '[+*/%-]=|==|!=|&&|\|\||<=|>=' $SRC_FILES 2>/dev/null | wc -l)" \
   "-> no operator usage detected"
 
 check "if / else conditional logic" \
@@ -283,7 +285,7 @@ check "Constructors" \
   "-> none detected"
 
 check "Encapsulation (private fields)" \
-  "$(grep -rlE 'private[[:space:]]+[A-Za-z_<>\[\]]+[[:space:]]+[A-Za-z_]+;' $SRC_FILES 2>/dev/null | wc -l)" \
+  "$(grep -rlE 'private[[:space:]]+[]A-Za-z_<>\[]+[[:space:]]+[A-Za-z_]+;' $SRC_FILES 2>/dev/null | wc -l)" \
   "-> no private fields found -- check fields aren't left public"
 
 check "Inheritance (extends)" \
