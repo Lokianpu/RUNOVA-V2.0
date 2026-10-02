@@ -19,6 +19,16 @@
             android:paddingVertical="5dp"
             android:gravity="center">
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_6"
+                android:contentDescription="RUNOVA logo"
+                android:scaleType="centerInside"
+                android:src="@drawable/logo"
+                app:shapeAppearanceOverlay="@style/LogoShapeAppearance" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,7 +36,7 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginTop="@dimen/space_3"
                 android:layout_marginBottom="@dimen/space_7" />
 
             <androidx.cardview.widget.CardView
@@ -84,24 +94,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date of Birth"
+                        android:text="Age (17 to 25 y/o)"
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:layout_marginBottom="@dimen/space_2" />
 
-                    <Button
-                        android:id="@+id/btnDatePicker"
+                    <Spinner
+                        android:id="@+id/spinnerAge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Select Date"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/input_bg"
+                        android:backgroundTint="@color/white"
                         android:layout_marginBottom="@dimen/space_4" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gender"
+                        android:text="Sex"
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:layout_marginBottom="@dimen/space_2" />

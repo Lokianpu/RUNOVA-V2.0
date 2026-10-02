@@ -28,8 +28,11 @@ public class ValidationHelper {
             return "Date cannot be in the future";
         }
         int age = DateUtils.ageFrom(dob);
-        if (age < 13 || age > 100) {
-            return "Age must be between 13 and 100";
+        if (age < 17) {
+            return "You are younger than 17 years old. RUNOVA is for ages 17 to 25 only.";
+        }
+        if (age > 25) {
+            return "You are older than 25 years old. RUNOVA is for ages 17 to 25 only.";
         }
         return null;
     }

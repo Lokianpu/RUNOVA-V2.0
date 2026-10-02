@@ -80,7 +80,6 @@ id btnAbout
 id btnBack
 id btnCancelEdit
 id btnComplete
-id btnDatePicker
 id btnEditProfile
 id btnExerciseStart
 id btnFinish
@@ -115,18 +114,13 @@ id rvPendingTasks
 id rvTasks
 id screenScroll
 id settingsb
-id spinnerEvent
+id spinnerAge
 id spinnerGender
-id spinnerGoal
 id spinnerLevel
 id tabMonth
 id tabWeek
 id tabYear
 id targetb
-id tvAge
-id tvCfgEvent
-id tvCfgGoal
-id tvCfgLevel
 id tvChartCaption
 id tvChartTitle
 id tvCompletedEmpty
@@ -155,6 +149,7 @@ id tvScreenTitle
 id tvStatAge
 id tvStatGender
 id tvStatHeight
+id tvStatLevel
 id tvStatSessions
 id tvStatStreak
 id tvStatWeight
@@ -226,6 +221,7 @@ string q_weight_hint
 string q_weight_label
 style Animation.RUNOVA.None
 style Base.Theme.RUNOVA
+style LogoShapeAppearance
 style Theme.RUNOVA
 style Theme.RUNOVA.AlertDialog
 style Theme.RUNOVA.Button

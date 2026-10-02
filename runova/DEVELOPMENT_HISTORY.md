@@ -1099,7 +1099,34 @@ app/src/main/res/layout/activity_timer.xml (modified)
 
 ---
 
-## Current State (2026-10-02 05:25 UTC)
+## Session 15: Profile — Event/Goal Removed, Level Moved into My Stats (2026-10-02)
+
+**What changed:**
+- View mode: "Training Configuration" card (Event/Level/Goal rows) deleted from `activity_profile.xml`; Level row added inside "My Stats" card as its own container (`bg_summary_card` box, padding 12dp) above the stat grid, separated from Height/Weight etc.
+- Edit mode: `spinnerEvent` and `spinnerGoal` deleted from the edit "Training Configuration" card; card keeps Height, Weight, `spinnerLevel`.
+- `ProfileActivity`: removed event/goal spinner + `tvCfg*` fields, adapters, load bindings, and `PROFILE_EVENT`/`PROFILE_GOAL` writes in both save paths; new `tvStatLevel` bound in `loadProfile()`.
+- Event/Goal remain in DB + questionnaire + Home wording (set once at onboarding, no longer editable in Profile).
+
+**Files Created/Modified:**
+```
+app/src/main/res/layout/activity_profile.xml (modified)
+app/src/main/java/com/runova/ProfileActivity.java (modified)
+```
+
+**Why:** Developer instruction — fully remove event and goal spinners and their display card; level display belongs in My Stats with its own container.
+
+**Key Decisions:**
+- Spec demo step "Profile → edit Event (no wipe)" (Agent_Specs demo script) is now dead — developer-approved deviation (LEVEL 1 instruction over spec).
+- Level spinner kept → level-change wipe flow intact; `PROFILE_LEVEL_START` write kept.
+- No DB/schema change; `event_options`/`goal_options` arrays left in place.
+
+**Verification:**
+- `./gradlew assembleDebug test` -> green.
+- Device: Profile view shows "Level / Beginner" box inside My Stats (y709, above Height y825), Training Configuration card gone; edit mode has exactly 2 spinners (gender + level), no Event/Goal; CANCEL exits without save; 0 com.runova FATAL. Shots: `/tmp/runova_shots/profile_stats.png`, `profile_edit.png`.
+
+---
+
+## Current State (2026-10-02 11:27 UTC)
 
 ### All Core Phases Complete ✅
 
@@ -1109,7 +1136,7 @@ app/src/main/res/layout/activity_timer.xml (modified)
 - ✅ Home screen (greeting, date, tasks, level progress, bell icon)
 - ✅ Target screen (task content flow, per-exercise timers, task completion)
 - ✅ Analytics (level progress, streak, status counts, weekly chart)
-- ✅ Profile editing (validation, level change with confirmation)
+- ✅ Profile editing (validation, level change with confirmation); Level shown in My Stats, Event/Goal no longer edited in Profile (Session 15)
 - ✅ Level cycle (28-day check, dialog, notifications inbox)
 - ✅ Bottom navigation on all 4 screens (Home/Target/Analytics/Profile) - fixed to the bottom edge, no transition
 - ✅ Edge-to-edge on all 8 screens (Session 9 + 10), verified screen by screen
@@ -1398,7 +1425,7 @@ Any key decisions made?:
 ```
 
 
-*Last Updated: 2026-10-02 05:25 UTC*  
+*Last Updated: 2026-10-02 11:27 UTC*  
 *Total Development Time: ~37-42 hours across 8 phases*  
 *Sessions: 14 (Foundation + Welcome + Onboarding + Home + Target + Analytics + Profile + LevelCycle + Full-Screen Chrome + Fixes & Verification + Design Consistency / Responsive / Charts / Timer + Offline Audit / Concurrency / Timer Expiration + Welcome Dialog / Documentation / Level-Up Rework + Training Content / Generic Timer)*  
 *Total Files: 28 Java classes + layouts + resources*  

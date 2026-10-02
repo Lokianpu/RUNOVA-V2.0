@@ -16,18 +16,54 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="20dp"
-            android:paddingVertical="5dp"
-            android:gravity="center">
+            android:paddingVertical="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="10dp">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Back"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_chevron_left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Return"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_4"
+                android:contentDescription="RUNOVA logo"
+                android:scaleType="centerInside"
+                android:src="@drawable/logo"
+                app:shapeAppearanceOverlay="@style/LogoShapeAppearance" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_3"
+                android:layout_marginBottom="@dimen/space_7"
+                android:gravity="center"
                 android:text="Training Profile"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/space_8"
-                android:layout_marginBottom="@dimen/space_7" />
+                android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -113,6 +149,7 @@
                 android:id="@+id/btnFinish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="FINISH"
                 android:textColor="@color/white"
                 android:textSize="18sp"

@@ -39,6 +39,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
         setupSpinners();
         btnFinish.setOnClickListener(v -> handleFinish());
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
     }
 
     private void setupSpinners() {

@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/ic_launcher_foreground.xml"
-    },
-    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_dumbbell.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/dumbbell.xml"
+    },
+    {
+        "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/ic_launcher_foreground.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_ic_chevron_left.xml.flat",
@@ -80,10 +80,6 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.runova.app-debug-35:/layout_item_task_control.xml.flat",
-        "source": "com.runova.app-main-37:/layout/item_task_control.xml"
-    },
-    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_ic_sleep.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/drawable/ic_sleep.xml"
     },
@@ -142,10 +138,6 @@
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/layout_activity_home.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-37:/layout/activity_home.xml"
-    },
-    {
-        "merged": "com.runova.app-debug-35:/layout_activity_training_content.xml.flat",
-        "source": "com.runova.app-main-37:/layout/activity_training_content.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-debug-35:/drawable_settingsb.xml.flat",

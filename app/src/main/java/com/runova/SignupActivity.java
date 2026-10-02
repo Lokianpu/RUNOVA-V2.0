@@ -1,6 +1,5 @@
 package com.runova;
 
-import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -20,13 +19,11 @@ import com.runova.helpers.DateUtils;
 import com.runova.helpers.ValidationHelper;
 import com.runova.helpers.WindowHelper;
 
-import java.util.Calendar;
-
 public class SignupActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private EditText etFirstName, etLastName;
-    private Button btnDatePicker, btnNext;
-    private Spinner spinnerGender;
+    private Button btnNext;
+    private Spinner spinnerGender, spinnerAge;
     private String selectedDate = "";
 
     @Override
@@ -46,12 +43,12 @@ public class SignupActivity extends AppCompatActivity {
 
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
-        btnDatePicker = findViewById(R.id.btnDatePicker);
+        spinnerAge = findViewById(R.id.spinnerAge);
         spinnerGender = findViewById(R.id.spinnerGender);
         btnNext = findViewById(R.id.btnNext);
 
         setupGenderSpinner();
-        setupDatePicker();
+        setupAgeSpinner();
 
         btnNext.setOnClickListener(v -> handleNext());
 
@@ -73,7 +70,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void setupGenderSpinner() {
-        String[] genders = {"Select Gender", "Male", "Female", "Other"};
+        String[] genders = {"Select Sex", "Male", "Female"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
             this,
             android.R.layout.simple_spinner_item,
@@ -83,23 +80,19 @@ public class SignupActivity extends AppCompatActivity {
         spinnerGender.setAdapter(adapter);
     }
 
-    private void setupDatePicker() {
-        btnDatePicker.setOnClickListener(v -> {
-            Calendar cal = Calendar.getInstance();
-            int year = cal.get(Calendar.YEAR) - 20;
-            int month = cal.get(Calendar.MONTH);
-            int day = cal.get(Calendar.DAY_OF_MONTH);
-
-            DatePickerDialog dialog = new DatePickerDialog(
-                this,
-                (view, y, m, d) -> {
-                    selectedDate = String.format("%04d-%02d-%02d", y, m + 1, d);
-                    btnDatePicker.setText(selectedDate);
-                },
-                year, month, day
-            );
-            dialog.show();
-        });
+    private void setupAgeSpinner() {
+        String[] ages = new String[10];
+        ages[0] = "Select Age";
+        for (int i = 1; i <= 9; i++) {
+            ages[i] = String.valueOf(16 + i); // 17 to 25
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+            this,
+            android.R.layout.simple_spinner_item,
+            ages
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAge.setAdapter(adapter);
     }
 
     private void handleNext() {
@@ -120,11 +113,12 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        error = ValidationHelper.validateDateOfBirth(selectedDate);
-        if (error != null) {
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        String ageStr = spinnerAge.getSelectedItem().toString();
+        if (ageStr.equals("Select Age")) {
+            Toast.makeText(this, "Please select your age", Toast.LENGTH_SHORT).show();
             return;
         }
+        selectedDate = DateUtils.dobFromAge(Integer.parseInt(ageStr));
 
         if (gender.equals("Select Gender")) {
             Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
@@ -138,6 +132,15 @@ public class SignupActivity extends AppCompatActivity {
         intent.putExtra("dateOfBirth", selectedDate);
         intent.putExtra("gender", gender);
         startActivity(intent);
-        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Onboarding already completed (user returned here via back from Home):
+        // close without re-launching Home so Back keeps exiting the app.
+        if (profileExists()) {
+            finish();
+        }
     }
 }

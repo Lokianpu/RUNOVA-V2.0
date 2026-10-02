@@ -25,11 +25,9 @@ import com.runova.helpers.WindowHelper;
 public class ProfileActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private EditText etFirstName, etLastName, etHeight, etWeight;
-    private TextView tvAge;
-    private Spinner spinnerGender, spinnerEvent, spinnerLevel, spinnerGoal;
+    private Spinner spinnerAge, spinnerGender, spinnerLevel;
     private TextView tvProfileName, tvViewLevel, tvStatHeight, tvStatWeight,
-            tvStatSessions, tvStatStreak, tvStatAge, tvStatGender,
-            tvCfgEvent, tvCfgLevel, tvCfgGoal;
+            tvStatSessions, tvStatStreak, tvStatAge, tvStatGender, tvStatLevel;
     private View profileViewBlock, profileEditBlock;
     private StatsHelper statsHelper;
     private String currentLevel;
@@ -56,19 +54,15 @@ public class ProfileActivity extends AppCompatActivity {
         tvStatStreak = findViewById(R.id.tvStatStreak);
         tvStatAge = findViewById(R.id.tvStatAge);
         tvStatGender = findViewById(R.id.tvStatGender);
-        tvCfgEvent = findViewById(R.id.tvCfgEvent);
-        tvCfgLevel = findViewById(R.id.tvCfgLevel);
-        tvCfgGoal = findViewById(R.id.tvCfgGoal);
+        tvStatLevel = findViewById(R.id.tvStatLevel);
 
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
         etHeight = findViewById(R.id.etHeight);
         etWeight = findViewById(R.id.etWeight);
-        tvAge = findViewById(R.id.tvAge);
+        spinnerAge = findViewById(R.id.spinnerAge);
         spinnerGender = findViewById(R.id.spinnerGender);
-        spinnerEvent = findViewById(R.id.spinnerEvent);
         spinnerLevel = findViewById(R.id.spinnerLevel);
-        spinnerGoal = findViewById(R.id.spinnerGoal);
 
         setupSpinners();
         loadProfile();
@@ -98,25 +92,24 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setupSpinners() {
+        String[] ages = new String[25 - 17 + 1];
+        for (int i = 0; i < ages.length; i++) {
+            ages[i] = String.valueOf(17 + i);
+        }
+        ArrayAdapter<String> ageAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, ages);
+        ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAge.setAdapter(ageAdapter);
+
         ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(this,
                 R.array.gender_options, android.R.layout.simple_spinner_item);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(genderAdapter);
 
-        ArrayAdapter<CharSequence> eventAdapter = ArrayAdapter.createFromResource(this,
-                R.array.event_options, android.R.layout.simple_spinner_item);
-        eventAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerEvent.setAdapter(eventAdapter);
-
         ArrayAdapter<CharSequence> levelAdapter = ArrayAdapter.createFromResource(this,
                 R.array.level_options, android.R.layout.simple_spinner_item);
         levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLevel.setAdapter(levelAdapter);
-
-        ArrayAdapter<CharSequence> goalAdapter = ArrayAdapter.createFromResource(this,
-                R.array.goal_options, android.R.layout.simple_spinner_item);
-        goalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGoal.setAdapter(goalAdapter);
     }
 
     private void loadProfile() {
@@ -130,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
             dateOfBirth = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PROFILE_DOB));
             
             int age = DateUtils.ageFrom(dateOfBirth);
-            tvAge.setText("Age: " + age);
+            setSpinnerValue(spinnerAge, String.valueOf(age));
 
             String gender = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PROFILE_GENDER));
             setSpinnerValue(spinnerGender, gender);
@@ -140,14 +133,8 @@ public class ProfileActivity extends AppCompatActivity {
             etHeight.setText(String.valueOf(height));
             etWeight.setText(String.valueOf(weight));
 
-            String event = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PROFILE_EVENT));
-            setSpinnerValue(spinnerEvent, event);
-
             currentLevel = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PROFILE_LEVEL));
             setSpinnerValue(spinnerLevel, currentLevel);
-
-            String goal = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PROFILE_GOAL));
-            setSpinnerValue(spinnerGoal, goal);
 
             String firstName = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PROFILE_FIRST_NAME));
             String lastName = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.PROFILE_LAST_NAME));
@@ -157,9 +144,7 @@ public class ProfileActivity extends AppCompatActivity {
             tvStatWeight.setText(fmtNum(weight) + " kg");
             tvStatAge.setText(String.valueOf(age));
             tvStatGender.setText(gender == null ? "--" : gender);
-            tvCfgEvent.setText(event == null ? "--" : event);
-            tvCfgLevel.setText(currentLevel == null ? "--" : currentLevel);
-            tvCfgGoal.setText(goal == null ? "--" : goal);
+            tvStatLevel.setText(currentLevel == null ? "--" : currentLevel);
         }
         cursor.close();
 
@@ -206,6 +191,8 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
+        dateOfBirth = DateUtils.dobFromAge(Integer.parseInt(spinnerAge.getSelectedItem().toString()));
+
         String newLevel = spinnerLevel.getSelectedItem().toString();
 
         if (!newLevel.equals(currentLevel)) {
@@ -232,9 +219,8 @@ public class ProfileActivity extends AppCompatActivity {
         values.put(DBHelper.PROFILE_HEIGHT, height);
         values.put(DBHelper.PROFILE_WEIGHT, weight);
         values.put(DBHelper.PROFILE_GENDER, spinnerGender.getSelectedItem().toString());
-        values.put(DBHelper.PROFILE_EVENT, spinnerEvent.getSelectedItem().toString());
+        values.put(DBHelper.PROFILE_DOB, dateOfBirth);
         values.put(DBHelper.PROFILE_LEVEL, newLevel);
-        values.put(DBHelper.PROFILE_GOAL, spinnerGoal.getSelectedItem().toString());
         values.put(DBHelper.PROFILE_LEVEL_START, DateUtils.today());
 
         db.update(DBHelper.TABLE_PROFILE, values, DBHelper.PROFILE_ID + " = 1", null);
@@ -251,9 +237,8 @@ public class ProfileActivity extends AppCompatActivity {
         values.put(DBHelper.PROFILE_HEIGHT, height);
         values.put(DBHelper.PROFILE_WEIGHT, weight);
         values.put(DBHelper.PROFILE_GENDER, spinnerGender.getSelectedItem().toString());
-        values.put(DBHelper.PROFILE_EVENT, spinnerEvent.getSelectedItem().toString());
+        values.put(DBHelper.PROFILE_DOB, dateOfBirth);
         values.put(DBHelper.PROFILE_LEVEL, level);
-        values.put(DBHelper.PROFILE_GOAL, spinnerGoal.getSelectedItem().toString());
 
         db.update(DBHelper.TABLE_PROFILE, values, DBHelper.PROFILE_ID + " = 1", null);
         Toast.makeText(this, "Profile saved", Toast.LENGTH_SHORT).show();

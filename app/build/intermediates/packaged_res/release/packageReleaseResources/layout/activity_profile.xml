@@ -128,6 +128,35 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/bg_summary_card"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:alpha="0.7"
+                                android:text="Level"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvStatLevel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -308,118 +337,6 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/card_gap"
-                    app:cardBackgroundColor="@color/card_bg"
-                    app:cardCornerRadius="@dimen/card_radius"
-                    app:cardElevation="@dimen/card_elevation">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/card_padding">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:text="Training Configuration"
-                            android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.7"
-                                android:text="Event"
-                                android:textColor="@color/white"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvCfgEvent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="--"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginVertical="12dp"
-                            android:background="#33000000" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.7"
-                                android:text="Level"
-                                android:textColor="@color/white"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvCfgLevel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="--"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginVertical="12dp"
-                            android:background="#33000000" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.7"
-                                android:text="Goal"
-                                android:textColor="@color/white"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/tvCfgGoal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="--"
-                                android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -487,105 +404,119 @@
                             android:textStyle="bold"
                             android:layout_marginBottom="@dimen/space_3" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:alpha="0.7"
+                            android:text="First Name"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
                         <EditText
                             android:id="@+id/etFirstName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="First Name"
                             android:textColor="@color/white"
-                            android:textColorHint="#99FFFFFF"
                             android:backgroundTint="@color/white"
                             android:layout_marginBottom="@dimen/space_2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:alpha="0.7"
+                            android:text="Last Name"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
 
                         <EditText
                             android:id="@+id/etLastName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Last Name"
                             android:textColor="@color/white"
-                            android:textColorHint="#99FFFFFF"
                             android:backgroundTint="@color/white"
                             android:layout_marginBottom="@dimen/space_2" />
 
                         <TextView
-                            android:id="@+id/tvAge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Age: --"
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:alpha="0.7"
+                            android:text="Age"
                             android:textColor="@color/white"
-                            android:textSize="14sp"
+                            android:textSize="12sp" />
+
+                        <Spinner
+                            android:id="@+id/spinnerAge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
                             android:layout_marginBottom="@dimen/space_2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:alpha="0.7"
+                            android:text="Gender"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
 
                         <Spinner
                             android:id="@+id/spinnerGender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/card_gap"
-                    app:cardBackgroundColor="@color/card_bg"
-                    app:cardCornerRadius="@dimen/card_radius"
-                    app:cardElevation="@dimen/card_elevation">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/card_padding">
+                            android:backgroundTint="@color/white"
+                            android:layout_marginBottom="@dimen/space_2" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Training Configuration"
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:alpha="0.7"
+                            android:text="Height"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:layout_marginBottom="@dimen/space_3" />
+                            android:textSize="12sp" />
 
                         <EditText
                             android:id="@+id/etHeight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Height (cm)"
                             android:inputType="numberDecimal"
                             android:textColor="@color/white"
-                            android:textColorHint="#99FFFFFF"
                             android:backgroundTint="@color/white"
                             android:layout_marginBottom="@dimen/space_2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:alpha="0.7"
+                            android:text="Weight"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
 
                         <EditText
                             android:id="@+id/etWeight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Weight (kg)"
                             android:inputType="numberDecimal"
                             android:textColor="@color/white"
-                            android:textColorHint="#99FFFFFF"
                             android:backgroundTint="@color/white"
                             android:layout_marginBottom="@dimen/space_2" />
 
-                        <Spinner
-                            android:id="@+id/spinnerEvent"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:layout_marginBottom="@dimen/space_2" />
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:alpha="0.7"
+                            android:text="Level"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
 
                         <Spinner
                             android:id="@+id/spinnerLevel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:layout_marginBottom="@dimen/space_2" />
-
-                        <Spinner
-                            android:id="@+id/spinnerGoal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/white" />

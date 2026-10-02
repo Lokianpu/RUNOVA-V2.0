@@ -158,12 +158,11 @@ public class TrainingContentActivity extends AppCompatActivity {
             TextView tvName = card.findViewById(R.id.tvExerciseName);
             TextView tvDescription = card.findViewById(R.id.tvExerciseDescription);
             TextView tvDuration = card.findViewById(R.id.tvExerciseDuration);
-            TextView tvStatus = card.findViewById(R.id.tvExerciseStatus);
             Button btnStart = card.findViewById(R.id.btnExerciseStart);
 
             tvName.setText(exercise.name);
             tvDescription.setText(exercise.description);
-            tvDuration.setText(seconds + " seconds");
+            tvDuration.setText(formatDuration(seconds));
 
             final int cardSeconds = seconds;
             btnStart.setOnClickListener(v -> {
@@ -175,9 +174,7 @@ public class TrainingContentActivity extends AppCompatActivity {
             });
 
             if (doneIndices.contains(index)) {
-                tvStatus.setVisibility(View.VISIBLE);
-                btnStart.setText("DONE");
-                btnStart.setEnabled(false);
+                applyDoneState(btnStart);
             }
 
             cards.add(card);
@@ -190,15 +187,28 @@ public class TrainingContentActivity extends AppCompatActivity {
             return;
         }
         View card = cards.get(index);
-        card.findViewById(R.id.tvExerciseStatus).setVisibility(View.VISIBLE);
         Button btnStart = card.findViewById(R.id.btnExerciseStart);
-        btnStart.setText("DONE");
-        btnStart.setEnabled(false);
+        applyDoneState(btnStart);
         saveProgress();
 
         if (doneIndices.size() >= totalExercises) {
             finishTask();
         }
+    }
+
+    private void applyDoneState(Button btn) {
+        btn.setText("DONE");
+        btn.setBackgroundTintList(getResources().getColorStateList(R.color.status_success, null));
+        btn.setEnabled(false);
+    }
+
+    private String formatDuration(int seconds) {
+        if (seconds < 60) return seconds + (seconds == 1 ? " second" : " seconds");
+        int min = seconds / 60;
+        int rest = seconds % 60;
+        String text = min + (min == 1 ? " minute" : " minutes");
+        if (rest > 0) text += " " + rest + (rest == 1 ? " second" : " seconds");
+        return text;
     }
 
     private void finishTask() {

@@ -31,6 +31,14 @@ public class DateUtils {
         }
     }
 
+    // Derive ISO date of birth so that the user's age is exactly the given age today
+    public static String dobFromAge(int age) {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR) - age;
+        return String.format("%04d-%02d-%02d", year,
+            cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
+    }
+
     // Get weekday (1=Monday, 7=Sunday)
     public static int getWeekday(String date) {
         try {

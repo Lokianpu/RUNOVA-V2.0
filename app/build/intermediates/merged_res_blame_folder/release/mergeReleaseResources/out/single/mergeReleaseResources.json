@@ -120,10 +120,6 @@
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.runova.app-release-35:/layout_item_exercise_card.xml.flat",
-        "source": "com.runova.app-main-36:/layout/item_exercise_card.xml"
-    },
-    {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/layout_activity_settings.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/layout/activity_settings.xml"
     },
@@ -146,10 +142,6 @@
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_bg_level_card_selected_v1.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/bg_level_card_selected_v1.xml"
-    },
-    {
-        "merged": "com.runova.app-release-35:/layout_activity_training_content.xml.flat",
-        "source": "com.runova.app-main-36:/layout/activity_training_content.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_notification.xml.flat",
@@ -190,10 +182,6 @@
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_water.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/drawable/water.xml"
-    },
-    {
-        "merged": "com.runova.app-release-35:/layout_item_task_control.xml.flat",
-        "source": "com.runova.app-main-36:/layout/item_task_control.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/mipmap-mdpi_ic_launcher_round.webp.flat",
@@ -262,6 +250,10 @@
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/layout_activity_home.xml.flat",
         "source": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-main-36:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.runova.app-release-35:/layout_activity_profile.xml.flat",
+        "source": "com.runova.app-main-36:/layout/activity_profile.xml"
     },
     {
         "merged": "/Users/loki/.gradle/daemon/9.5.0/com.runova.app-release-35:/drawable_bg_chip.xml.flat",

@@ -53,6 +53,12 @@
         <item name="dialogCornerRadius">@dimen/card_radius</item>
     </style>
 
+    <!-- Logo corners match the project card radius. -->
+    <style name="LogoShapeAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/card_radius</item>
+    </style>
+
     <!-- V6 - One shared transition style with every activity animation removed. -->
     <style name="Animation.RUNOVA.None" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@null</item>

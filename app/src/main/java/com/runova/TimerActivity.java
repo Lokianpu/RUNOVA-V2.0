@@ -1,6 +1,7 @@
 package com.runova;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.runova.helpers.WindowHelper;
@@ -46,7 +48,7 @@ public class TimerActivity extends AppCompatActivity {
         tvTimerDisplay = findViewById(R.id.tvTimerDisplay);
         tvTimerState = findViewById(R.id.tvTimerState);
         btnPrimary = findViewById(R.id.btnPrimary);
-        findViewById(R.id.btnBack).setOnClickListener(v -> goBack());
+        findViewById(R.id.btnBack).setOnClickListener(v -> showExitConfirmation());
 
         tvTaskName.setText(name);
         tvDurationLabel.setText("Duration: " + totalSeconds + " seconds");
@@ -55,10 +57,43 @@ public class TimerActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         btnPrimary.setOnClickListener(v -> onPrimary());
         showReady();
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                showExitConfirmation();
+            }
+        });
+    }
+
+    // Single confirmation used by both the BACK TO TARGET button and the
+    // system back gesture. A running timer pauses while the dialog is open
+    // and resumes on CANCEL; EXIT performs the normal exit (goBack).
+    private void showExitConfirmation() {
+        if (completed) {
+            goBack();
+            return;
+        }
+        final boolean wasRunning = running;
+        if (wasRunning) {
+            pauseCountdown();
+        }
+        new AlertDialog.Builder(this)
+                .setTitle("Exit Training?")
+                .setMessage("Are you sure you want to exit? Your current training progress may be lost.")
+                .setNegativeButton("CANCEL", (dialog, which) -> {
+                    if (wasRunning) resumeCountdown();
+                })
+                .setPositiveButton("EXIT", (dialog, which) -> goBack())
+                .setOnCancelListener(dialog -> {
+                    if (wasRunning) resumeCountdown();
+                })
+                .show();
     }
 
     private void onPrimary() {
         if (completed) {
+            goBack();
             return;
         }
         if (ready) {
@@ -112,7 +147,8 @@ public class TimerActivity extends AppCompatActivity {
                 setDisplay(0);
                 tvTimerState.setText("Completed");
                 btnPrimary.setText("DONE");
-                btnPrimary.setEnabled(false);
+                btnPrimary.setBackgroundTintList(getResources().getColorStateList(R.color.status_success, null));
+                btnPrimary.setEnabled(true);
                 setResult(Activity.RESULT_OK,
                     new Intent().putExtra(EXTRA_COMPLETED, true));
             }
@@ -150,11 +186,6 @@ public class TimerActivity extends AppCompatActivity {
             setResult(Activity.RESULT_CANCELED);
         }
         finish();
-    }
-
-    @Override
-    public void onBackPressed() {
-        goBack();
     }
 
     @Override
